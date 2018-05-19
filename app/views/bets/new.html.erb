@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Ton prono pour <%= @game.team1 %> - <%= @game.team2 %> </h1>
+
+  <% if @error %>
+    <h1><%= @error %></h1>
+  <% end %>
+
+  <%= simple_form_for [@game, @bet] do |f| %>
+    <%= f.input :score1bet, label: "Score #{@game.team1}" %>
+    <%= f.input :score2bet, label: "Score #{@game.team2}" %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>
