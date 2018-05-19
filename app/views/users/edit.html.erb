@@ -1,0 +1,16 @@
+<div class="container">
+  <% if @user.pseudo %>
+    <h1>Hello <%= @user.pseudo %></h1>
+    <p>T'es vraiment magnifique aujourd'hui</p>
+  <% else %>
+    <h1>Hello <%= @user.email %></h1>
+    <p>(Tu devrais ajouter un pseudo si tu veux pas être has been)</p>
+  <% end %>
+
+
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :pseudo %>
+    <%= f.button :submit %>
+  <% end %>
+
+</div>
