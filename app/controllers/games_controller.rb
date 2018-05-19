@@ -1,10 +1,11 @@
 class GamesController < ApplicationController
+  before_action :find_game_by_id, only: [:show, :edit, :update, :destroy]
+
   def index
     @games = Game.all.sort
   end
 
   def show
-    @game = Game.find(params[:id])
   end
 
   def new
@@ -21,11 +22,9 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find(params[:id])
   end
 
   def update
-    @game = Game.find(params[:id])
     if @game.update(game_params)
       redirect_to game_path(@game)
     else
@@ -34,7 +33,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
     @game.destroy
     redirect_to games_path
   end
@@ -43,5 +41,9 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:team1, :team2, :score1, :score2)
+  end
+
+  def find_game_by_id
+    @game = Game.find(params[:id])
   end
 end
