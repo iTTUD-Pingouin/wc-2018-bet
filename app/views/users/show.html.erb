@@ -1,9 +1,29 @@
-<% if @user.pseudo %>
-  <h1><%= @user.pseudo %></h1>
-<% else %>
-  <h1><%= @user.email %></h1>
-<% end %>
+<div class="container">
+  <% if @user.pseudo %>
+    <h1><%= @user.pseudo %></h1>
+  <% else %>
+    <h1><%= @user.email %></h1>
+  <% end %>
 
 
-<%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
-<%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+
+  <h3>Mes pronostics</h3>
+
+  <% @user.bets.each do |bet| %>
+    <p>
+      <%= bet.game.team1 %>
+      <%= bet.score1bet %>
+      -
+      <%= bet.game.team2 %>
+      <%= bet.score2bet %>
+
+    </p>
+  <% end %>
+
+
+
+  <%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
+  <%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+
+</div>
+
