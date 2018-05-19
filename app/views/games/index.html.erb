@@ -2,27 +2,41 @@
 
 <div class="container">
   <h1>All games</h1>
+  <div class="row">
+    <!------- Card of all games --------------------------->
+    <% @games.each do |game| %>
+      <%= link_to game_path(game) do  %>
+        <div class="col-xs-12 col-lg-6">
+          <div  class="match-card">
 
-  <!------- Card of all games --------------------------->
-  <% @games.each do |game| %>
-    <%= link_to game_path(game) do  %>
-      <div  class="match-card">
-        <p><%= "#{game.team1} - #{game.team2}" %></p>
-        <% if game.score1 && game.score2 %>
-          <p><%= "#{game.score1} - #{game.score2}" %></p>
-        <% else %>
-          <p>Not played yet</p>
-        <% end %>
-        <p>
-          <%= link_to 'edit', edit_game_path(game) %>
-          -
-          <%= link_to 'delete', game_path(game), method: :delete %>
-        </p>
+            <div class="central-game-info">
+              <div class="home-team-lg">
+                <p><%="#{game.team1}"%></p>
+              </div>
+              <div class="final-score">
+                <div class="final-score-dom"><%= game.score1 %></div>
+                <div class="final-score-ext"><%= game.score2 %></div>
+              </div>
+              <div class="ext-team-lg">
+                <p><%= "#{game.team2}" %></p>
+              </div>
+            </div>
 
-      </div>
+            <div class="admin-games-links">
+              <p>
+                <%= link_to 'edit', edit_game_path(game) %> -
+                <%= link_to 'delete', game_path(game), method: :delete %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <!------- Card of all games --------------------------->
+    <!------- Card of all games --------------------------->
+
+  </div>
+
 
 
   <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>

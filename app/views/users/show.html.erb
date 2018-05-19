@@ -17,6 +17,9 @@
       <%= bet.game.team2 %>
       <%= bet.score2bet %>
 
+      <%= link_to 'Change ton prono', edit_bet_path(bet) %> |
+      <%= link_to 'Supprime ton prono', bet_path(bet), method: :delete %>
+
     </p>
   <% end %>
 

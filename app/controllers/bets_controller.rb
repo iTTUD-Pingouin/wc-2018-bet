@@ -19,12 +19,24 @@ class BetsController < ApplicationController
   end
 
   def edit
+    @bet = Bet.find(params[:id])
+    @game = @bet.game
   end
 
   def update
+    @bet = Bet.find(params[:id])
+    @game = @bet.game
+    if @bet.update(bet_params)
+      redirect_to user_path(@bet.user)
+    else
+     render :edit
+    end
   end
 
   def destroy
+    @bet = Bet.find(params[:id])
+    @bet.destroy
+    redirect_to user_path(current_user)
   end
 
   private

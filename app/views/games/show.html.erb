@@ -9,13 +9,15 @@
     <% end %>
   </div>
 
+  <%= link_to 'Donne ton prono', new_game_bet_path(@game) %>
+
 
 
   <div>
     <h2>Les pronostics</h2>
-
+<!--------------- ITERATION SUR LES PARIS ---------------->
     <% @game.bets.each do |bet| %>
-      <div>
+      <div class="game-bet-card">
         <p><%= bet.user.pseudo %></p>
         <p>
           <%= bet.game.team1 %>
@@ -23,9 +25,11 @@
           -
           <%= bet.game.team2 %>
           <%= bet.score2bet %>
+          <%= link_to 'Change ton prono', edit_bet_path(bet) %>
         </p>
       </div>
     <% end %>
+<!--------------- ITERATION SUR LES PARIS ---------------->
 
 
 
