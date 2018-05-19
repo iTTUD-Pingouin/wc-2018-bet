@@ -4,7 +4,10 @@
         <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
       <% end %>
 
+      <%= link_to 'My profile', user_path(current_user) %>
     <% else %> <!--USER NOT CONNECTED -->
 
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
+
+

@@ -1,0 +1,5 @@
+<% if @user.pseudo %>
+  <h1><%= @user.pseudo %></h1>
+<% else %>
+  <h1><%= @user.email %></h1>
+<% end %>

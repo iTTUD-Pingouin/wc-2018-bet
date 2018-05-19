@@ -7,5 +7,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  validates :pseudo, presence: true,  uniqueness: true
 end
