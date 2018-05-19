@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Edit <%= @game.team1 %> - <%= @game.team2 %></h1>
+
+  <%= simple_form_for @game do |f| %>
+    <%= f.input :team1 %>
+    <%= f.input :score1 %>
+    <%= f.input :team2 %>
+    <%= f.input :score2 %>
+    <%= f.button :submit %>
+  <% end %>
+
+</div>

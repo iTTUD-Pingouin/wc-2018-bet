@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Add a new match</h1>
+
+  <%= simple_form_for @game do |f| %>
+    <%= f.input :team1 %>
+    <%= f.input :team2 %>
+    <%= f.button :submit %>
+  <% end %>
+
+</div>

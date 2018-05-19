@@ -3,18 +3,27 @@
 <div class="container">
   <h1>All games</h1>
 
+  <!------- Card of all games --------------------------->
   <% @games.each do |game| %>
-
     <%= link_to game_path(game) do  %>
-      <div>
+      <div  class="match-card">
         <p><%= "#{game.team1} - #{game.team2}" %></p>
         <% if game.score1 && game.score2 %>
           <p><%= "#{game.score1} - #{game.score2}" %></p>
         <% else %>
-          <p>No score yet</p>
+          <p>Not played yet</p>
         <% end %>
+        <p>
+          <%= link_to 'edit', edit_game_path(game) %>
+          -
+          <%= link_to 'delete', game_path(game), method: :delete %>
+        </p>
+
       </div>
     <% end %>
-
   <% end %>
+  <!------- Card of all games --------------------------->
+
+
+  <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
 </div>
