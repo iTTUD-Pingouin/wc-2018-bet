@@ -13,7 +13,7 @@ class BetsController < ApplicationController
     if @bet.save
       redirect_to game_path(@game)
     else
-      @error = "T'as déjà parié ahuri"
+      @error = "T'as déjà parié sur ce match abruti"
       render :new
     end
   end

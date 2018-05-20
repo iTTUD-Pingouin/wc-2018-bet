@@ -1,25 +1,34 @@
-<div class="navbar-rocket-bet">
-  <div class="navbar-leftpart">
-    <%= link_to 'RocketBet', games_path %>
-  </div>
-  <div class="navbar-rightpart">
-    <% if user_signed_in? %> <!--USER CONNECTED -->
 
+<% if user_signed_in? %>
+  <div class="navbar-rocket-bet">
+    <div class="navbar-leftpart">
+      <%= link_to 'RocketBet', games_path %>
+    </div>
+    <div class="navbar-rightpart">
+      <% if user_signed_in? %> <!--USER CONNECTED -->
 
-      <%= link_to 'My profile', user_path(current_user) %>
+        <% if current_user.group %>
+          <%= link_to "Classement #{current_user.group}", grouperank_games_path %>
+        <% end %>
 
-      <p>Photo</p>
+        <%= link_to 'Classement général', global_games_path %>
 
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <%= link_to 'My profile', user_path(current_user) %>
+
+        <p>Photo</p>
+
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %>
+
+      <% else %> <!--USER NOT CONNECTED -->
+
+        <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
-
-    <% else %> <!--USER NOT CONNECTED -->
-
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
+
 
 
 

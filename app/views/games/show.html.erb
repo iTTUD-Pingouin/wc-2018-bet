@@ -1,6 +1,14 @@
 <div class="container">
+<!--------------- INFORMATIONS DU MATCH ---------------->
   <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
   <div>
+    <% if Game.exists?(@game.id - 1)%>
+      <%= link_to 'Match précédent', game_path(@game.id-1)  %>
+    <% end %>
+    <% if Game.exists?(@game.id + 1) %>
+      <%= link_to 'Match suivant', game_path(@game.id+1)  %>
+    <% end %>
+
     <h2>Resultat</h2>
     <% if @game.score1 && @game.score2 %>
       <p><%= "#{@game.score1} - #{@game.score2}" %></p>
@@ -10,36 +18,69 @@
   </div>
 
   <%= link_to 'Donne ton prono', new_game_bet_path(@game) %>
+<!--------------- INFORMATIONS DU MATCH ---------------->
+
+<!--------------- PARIS DU GROUPE --------------------->
+  <div>
+    <h2>Les paris de mon groupe</h2>
+    <% if current_user.group %>
+      <% @game.bets.each do |bet| %>
+        <% if bet.user.group == current_user.group %>
+          <div class="game-bet-card">
+            <p>
+              <% if bet.user.pseudo %>
+                <%= bet.user.pseudo %>
+              <% else %>
+                <%= bet.user.email %>
+              <% end %>
+            </p>
+            <p>
+              <%= bet.game.team1 %>
+              <%= bet.score1bet %>
+              -
+              <%= bet.game.team2 %>
+              <%= bet.score2bet %>
+              <% if bet.user == current_user %>
+                <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>Tu n'as pas encore de groupe !</p>
+      <p>Si tu veux comparer tes paris à ceux de tes potes, go sur ton profil, section 'Edit' pour rejoindre un groupe !!!</p>
+    <% end %>
+  </div>
+<!--------------- PARIS DU GROUPE --------------------->
 
 
-
+<!--------------- TOUS LES PARIS ---------------->
   <div>
     <h2>Les pronostics</h2>
-<!--------------- ITERATION SUR LES PARIS ---------------->
     <% @game.bets.each do |bet| %>
       <div class="game-bet-card">
-        <p><%= bet.user.pseudo %></p>
+        <p>
+          <% if bet.user.pseudo %>
+            <%= bet.user.pseudo %>
+          <% else %>
+            <%= bet.user.email %>
+          <% end %>
+        </p>
         <p>
           <%= bet.game.team1 %>
           <%= bet.score1bet %>
           -
           <%= bet.game.team2 %>
           <%= bet.score2bet %>
-          <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+          <% if bet.user == current_user %>
+            <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+          <% end %>
         </p>
       </div>
     <% end %>
-<!--------------- ITERATION SUR LES PARIS ---------------->
-
-
-
-
   </div>
-
-
-
-
-
+<!--------------- ITERATION SUR LES PARIS ---------------->
 
 
 

@@ -20,7 +20,7 @@ before_action :find_user_by_id
   private
 
   def user_params
-    params.require(:user).permit(:pseudo)
+    params.require(:user).permit(:pseudo, :group)
   end
 
   def find_user_by_id

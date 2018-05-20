@@ -5,9 +5,22 @@
     <h1><%= @user.email %></h1>
   <% end %>
 
+    <p>Pseudo : <%= @user.pseudo %> </p>
+
+    <% if @user == current_user %>
+      <p>Email : <%= @user.email %> </p>
+    <% end %>
+
+    <p>Groupe : <%= @user.group %> </p>
 
 
-  <h3>Mes pronostics</h3>
+
+  <% if @user == current_user %>
+    <%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
+    <%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+  <% end %>
+
+  <h3>Pronostics</h3>
 
   <% @user.bets.each do |bet| %>
     <p>
@@ -17,16 +30,16 @@
       <%= bet.game.team2 %>
       <%= bet.score2bet %>
 
-      <%= link_to 'Change ton prono', edit_bet_path(bet) %> |
-      <%= link_to 'Supprime ton prono', bet_path(bet), method: :delete %>
 
+      <% if bet.user == current_user %>
+        <%= link_to 'Change ton prono', edit_bet_path(bet) %> |
+        <%= link_to 'Supprime ton prono', bet_path(bet), method: :delete %>
+      <% end %>
     </p>
   <% end %>
 
 
 
-  <%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
-  <%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
 
 </div>
 
