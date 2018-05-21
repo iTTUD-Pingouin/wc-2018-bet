@@ -7,7 +7,6 @@
     <p>(Tu devrais ajouter un pseudo si tu veux pas être has been)</p>
   <% end %>
 
-
   <%= simple_form_for @user do |f| %>
     <%= f.input :pseudo %>
     <%= f.input :group, as: :select, :collection => ['Wagon', 'Team Z5', 'Colmars', 'MBA ESG'] %>
