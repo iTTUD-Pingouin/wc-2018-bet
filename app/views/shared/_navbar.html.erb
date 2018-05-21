@@ -1,10 +1,10 @@
 
-<% if user_signed_in? %>
+
   <div class="navbar-rocket-bet">
     <div class="navbar-leftpart">
       <%= link_to 'RocketBet', games_path %>
     </div>
-    <div class="navbar-rightpart">
+    <div class="navbar-rightpart hidden-xs">
       <% if user_signed_in? %> <!--USER CONNECTED -->
 
         <% if current_user.group %>
@@ -26,8 +26,12 @@
         <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
     </div>
+
   </div>
-<% end %>
+
+
+
+
 
 
 

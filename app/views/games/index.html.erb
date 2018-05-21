@@ -1,7 +1,7 @@
 
-
 <div class="container">
   <h1>All games</h1>
+  <h2>Groupe A</h2>
   <div class="row">
     <!------- Card of all games --------------------------->
     <% @games.each do |game| %>
@@ -10,25 +10,39 @@
           <div  class="match-card">
 
             <div class="central-game-info">
-              <div class="home-team-lg">
+              <div class="home-team-lg text-center">
                 <p><%="#{game.team1}"%></p>
+                <%= image_tag(game.domflag) %>
               </div>
               <div class="final-score">
                 <div class="final-score-dom"><%= game.score1 %></div>
                 <div class="final-score-ext"><%= game.score2 %></div>
               </div>
-              <div class="ext-team-lg">
+              <div class="ext-team-lg text-center">
                 <p><%= "#{game.team2}" %></p>
+                <%= image_tag(game.extflag) %>
               </div>
             </div>
 
-            <div class="admin-games-links">
-              <p>
-                <%= link_to 'edit', edit_game_path(game) %> -
-                <%= link_to 'delete', game_path(game), method: :delete %>
-              </p>
+            <% if current_user.admin == "oui" %>
+              <div class="admin-games-links">
+                <p>
+                  <%= link_to 'edit', edit_game_path(game) %> -
+                  <%= link_to 'delete', game_path(game), method: :delete %>
+                </p>
+              </div>
+            <% end %>
 
+            <div class="your-index-bet">
+              <% current_user.bets.each do |bet| %>
+                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                <% end %>
+              <% end %>
             </div>
+
+
+
           </div>
         </div>
       <% end %>
@@ -38,6 +52,8 @@
   </div>
 
 
+  <% if current_user.admin == "oui" %>
+    <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
+  <% end %>
 
-  <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
 </div>

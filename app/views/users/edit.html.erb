@@ -10,8 +10,9 @@
 
   <%= simple_form_for @user do |f| %>
     <%= f.input :pseudo %>
-    <%= f.input :group %>
-    <%= f.button :submit %>
+    <%= f.input :group, as: :select, :collection => ['Wagon', 'Team Z5', 'Colmars', 'MBA ESG'] %>
+    <%= f.label 'Si tu souhaites créer un groupe, demande à la Roquette' %>
+    <%= f.button :submit, class: "btn btn-success"  %>
   <% end %>
 
 </div>

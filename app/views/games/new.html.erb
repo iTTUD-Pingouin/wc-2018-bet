@@ -3,7 +3,10 @@
 
   <%= simple_form_for @game do |f| %>
     <%= f.input :team1 %>
+    <%= f.input :domflag, as: :select, :collection => ['Arabie.png', 'Argentina.png', 'Australia.png', 'Belgium.png', 'Brazil.png', 'Colombia.png', 'Costa.png', 'Croatia.png', 'Denmark.png', 'Egypt.png', 'England.png', 'France.png', 'Germany.png', 'Iceland.png', 'Iran.png', 'Japan.png', 'Mexico.png', 'Morocco.png', 'Nigeria.png', 'Panama.png', 'Peru.png', 'Poland.png', 'Portugal.png', 'Russie.png', 'Senegal.png', 'Serbia.png', 'South-Korea.png', 'Spain.png', 'Suisse.png', 'Sweden.png', 'Tunisia.png', 'Uruguay.png' ] %>
     <%= f.input :team2 %>
+    <%= f.input :extflag, as: :select, :collection => ['Arabie.png', 'Argentina.png', 'Australia.png', 'Belgium.png', 'Brazil.png', 'Colombia.png', 'Costa.png', 'Croatia.png', 'Denmark.png', 'Egypt.png', 'England.png', 'France.png', 'Germany.png', 'Iceland.png', 'Iran.png', 'Japan.png', 'Mexico.png', 'Morocco.png', 'Nigeria.png', 'Panama.png', 'Peru.png', 'Poland.png', 'Portugal.png', 'Russie.png', 'Senegal.png', 'Serbia.png', 'South-Korea.png', 'Spain.png', 'Suisse.png', 'Sweden.png', 'Tunisia.png', 'Uruguay.png' ] %>
+    <%= f.input :poule %>
     <%= f.button :submit %>
   <% end %>
 

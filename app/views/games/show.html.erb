@@ -1,6 +1,11 @@
-<div class="container">
+<div class="container white-container">
 <!--------------- INFORMATIONS DU MATCH ---------------->
   <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
+    <%= image_tag("#{@game.domflag}") %>
+    -
+    <%= image_tag("#{@game.extflag}") %>
+
+  <p>(Groupe <%= @game.poule %>)</p>
   <div>
     <% if Game.exists?(@game.id - 1)%>
       <%= link_to 'Match précédent', game_path(@game.id-1)  %>
@@ -81,8 +86,6 @@
     <% end %>
   </div>
 <!--------------- ITERATION SUR LES PARIS ---------------->
-
-
 
   <%= link_to 'Back all games', games_path %>
 

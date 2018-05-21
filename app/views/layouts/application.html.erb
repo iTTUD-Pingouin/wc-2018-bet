@@ -14,11 +14,50 @@
   </head>
   <body>
 
-
-    <%= render 'shared/navbar' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <%= render 'shared/flashes' %>
 
+    <div class="hidden-sm hidden-md hidden-lg">
+      <div class="container">
+        <div class="row">
+          <% if user_signed_in? %> <!--USER CONNECTED -->
+            <div class="col-xs-6">
+              <% if current_user.group %>
+                <%= link_to "Classement #{current_user.group}", grouperank_games_path, class: 'btn btn-default' %>
+              <% end %>
+            </div>
+            <div class="col-xs-6">
+              <%= link_to 'Classement général', global_games_path, class: 'btn btn-default' %>
+
+            </div>
+            <div class="col-xs-6">
+              <%= link_to 'My profile', user_path(current_user), class: 'btn btn-default' %>
+
+            </div>
+            <div class="col-xs-6">
+              <%= link_to destroy_user_session_path, class: 'btn btn-default', method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-6 text-center">
+                  <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
+
+    <%= render 'shared/footer' %>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

@@ -3,11 +3,9 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all.sort
-
   end
 
   def show
-
   end
 
   def new
@@ -39,7 +37,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-
     @game.destroy
     redirect_to games_path
   end
@@ -54,7 +51,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:team1, :team2, :score1, :score2)
+    params.require(:game).permit(:team1, :team2, :score1, :score2, :poule, :domflag, :extflag)
 
   end
 
