@@ -31,7 +31,7 @@
 
 <!--------------- PARIS DU GROUPE --------------------->
   <div>
-    <h2>Les paris de mon groupe</h2>
+    <h2>Les paris du groupe <%= current_user.group %></h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -75,36 +75,40 @@
 
 <!--------------- TOUS LES PARIS ---------------->
   <div>
-    <h2>Les pronostics</h2>
-    <% @game.bets.each do |bet| %>
-      <div class="game-bet-card">
-        <p>
-          <% if bet.user.pseudo %>
-            <%= bet.user.pseudo %>
-          <% else %>
-            <%= bet.user.email %>
-          <% end %>
-        </p>
-        <p>
-          <%= bet.game.team1 %>
-          <%= bet.score1bet %>
-          -
-          <%= bet.game.team2 %>
-          <%= bet.score2bet %>
-          <% if bet.user == current_user %>
-            <%= link_to 'Change ton prono', edit_bet_path(bet) %>
-          <% end %>
-        </p>
-      </div>
-    <% end %>
+    <h2>Les pronostics de tous</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @game.bets.each do |bet| %>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <% if bet.user.pseudo %>
+                <%= bet.user.pseudo %>
+              <% else %>
+                <%= bet.user.email %>
+              <% end %>
+              <% if bet.user == current_user %>
+                <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+              <% end %>
+            </td>
+            <td><%= bet.score1bet %></td>
+            <td><%= bet.score2bet %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <!--------------- ITERATION SUR LES PARIS ---------------->
 
   <%= link_to 'Back all games', games_path %>
-
-
-
-
 
 
 
@@ -114,32 +118,3 @@
 
 
 
-<!-- ANCIENS PARIS DU GROUP -->
-    <% if current_user.group %>
-      <% @game.bets.each do |bet| %>
-        <% if bet.user.group == current_user.group %>
-          <div class="game-bet-card">
-            <p>
-              <% if bet.user.pseudo %>
-                <%= bet.user.pseudo %>
-              <% else %>
-                <%= bet.user.email %>
-              <% end %>
-            </p>
-            <p>
-              <%= bet.game.team1 %>
-              <%= bet.score1bet %>
-              -
-              <%= bet.game.team2 %>
-              <%= bet.score2bet %>
-              <% if bet.user == current_user %>
-                <%= link_to 'Change ton prono', edit_bet_path(bet) %>
-              <% end %>
-            </p>
-          </div>
-        <% end %>
-      <% end %>
-    <% else %>
-      <p>Tu n'as pas encore de groupe !</p>
-      <p>Si tu veux comparer tes paris à ceux de tes potes, go sur ton profil, section 'Edit' pour rejoindre un groupe !!!</p>
-    <% end %>
