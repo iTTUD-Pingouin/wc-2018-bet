@@ -3,6 +3,14 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all.sort
+    @games_A = Game.select { |game| game.poule == "A"}
+    @games_B = Game.select { |game| game.poule == "B"}
+    @games_C = Game.select { |game| game.poule == "C"}
+    @games_D = Game.select { |game| game.poule == "D"}
+    @games_E = Game.select { |game| game.poule == "E"}
+    @games_F = Game.select { |game| game.poule == "F"}
+    @games_G = Game.select { |game| game.poule == "G"}
+    @games_H = Game.select { |game| game.poule == "H"}
   end
 
   def show

@@ -1,17 +1,21 @@
 <div class="container">
-  <% if @user.pseudo %>
-    <h1>Hello <%= @user.pseudo %></h1>
-    <p>T'es vraiment magnifique aujourd'hui</p>
-  <% else %>
-    <h1>Hello <%= @user.email %></h1>
-    <p>(Tu devrais ajouter un pseudo si tu veux pas être has been)</p>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% if @user.pseudo %>
+        <h1>Hello <%= @user.pseudo %></h1>
+        <p>T'es vraiment magnifique aujourd'hui</p>
+      <% else %>
+        <h1>Hello <%= @user.email %></h1>
+        <p>(Tu devrais ajouter un pseudo si tu veux pas être has been)</p>
+      <% end %>
 
-  <%= simple_form_for @user do |f| %>
-    <%= f.input :pseudo %>
-    <%= f.input :group, as: :select, :collection => ['Wagon', 'Team Z5', 'Colmars', 'MBA ESG'] %>
-    <%= f.label 'Si tu souhaites créer un groupe, demande à la Roquette' %>
-    <%= f.button :submit, class: "btn btn-success"  %>
-  <% end %>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :pseudo %>
+        <%= f.input :group, as: :select, :collection => ['Wagon', 'Team Z5', 'Colmars', 'MBA ESG'] %>
+        <%= f.label 'Si tu souhaites créer un groupe, demande à la Roquette' %>
+        <%= f.button :submit, class: "btn btn-success"  %>
+      <% end %>
+    </div>
+  </div>
 
 </div>
