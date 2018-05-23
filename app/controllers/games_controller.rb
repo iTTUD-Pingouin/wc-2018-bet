@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
   before_action :find_game_by_id, only: [:show, :edit, :update, :destroy]
 
+
   def index
-    @games = Game.all.sort
+    @games = policy_scope(Game)
     @games_A = Game.select { |game| game.poule == "A"}
     @games_B = Game.select { |game| game.poule == "B"}
     @games_C = Game.select { |game| game.poule == "C"}
@@ -18,7 +19,6 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
-
   end
 
   def create
@@ -32,7 +32,6 @@ class GamesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -54,6 +53,7 @@ class GamesController < ApplicationController
   end
 
   def global_ranking
+
   end
 
   private
@@ -65,5 +65,6 @@ class GamesController < ApplicationController
 
   def find_game_by_id
     @game = Game.find(params[:id])
+    authorize @game
   end
 end

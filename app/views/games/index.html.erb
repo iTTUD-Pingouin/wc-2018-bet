@@ -25,7 +25,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -71,7 +71,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -117,7 +117,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -163,7 +163,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -209,7 +209,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -255,7 +255,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -301,7 +301,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -347,7 +347,7 @@
               </div>
             </div>
 
-            <% if current_user.admin == "oui" %>
+            <% if current_user.admin == true %>
               <div class="admin-games-links">
                 <p>
                   <%= link_to 'edit', edit_game_path(game) %> -
@@ -371,7 +371,7 @@
   </div>
 
 
-  <% if current_user.admin == "oui" %>
+  <% if current_user.admin == true %>
     <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
   <% end %>
 

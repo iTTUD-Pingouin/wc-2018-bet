@@ -1,8 +1,11 @@
 class BetsController < ApplicationController
 
+  before_action :set_bet, only: [:edit, :update, :destroy]
+
   def new
     @game = Game.find(params[:game_id])
     @bet = Bet.new
+    authorize @bet
   end
 
   def create
@@ -10,6 +13,7 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @bet.game = @game
     @bet.user = current_user
+    authorize @bet
     if @bet.save
       redirect_to game_path(@game)
     else
@@ -19,12 +23,10 @@ class BetsController < ApplicationController
   end
 
   def edit
-    @bet = Bet.find(params[:id])
     @game = @bet.game
   end
 
   def update
-    @bet = Bet.find(params[:id])
     @game = @bet.game
     if @bet.update(bet_params)
       redirect_to user_path(@bet.user)
@@ -34,7 +36,6 @@ class BetsController < ApplicationController
   end
 
   def destroy
-    @bet = Bet.find(params[:id])
     @bet.destroy
     redirect_to user_path(current_user)
   end
@@ -43,5 +44,10 @@ class BetsController < ApplicationController
 
   def bet_params
     params.require(:bet).permit(:score1bet, :score2bet)
+  end
+
+  def set_bet
+    @bet = Bet.find(params[:id])
+    authorize @bet
   end
 end
