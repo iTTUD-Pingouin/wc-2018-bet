@@ -5,6 +5,11 @@ before_action :find_user_by_id
   end
 
   def edit
+    if @user == current_user || current_user.admin
+      @user
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -13,8 +18,12 @@ before_action :find_user_by_id
   end
 
   def destroy
-    @user.destroy
-    redirect_to root_path
+    if @user == current_user || current_user.admin
+      @user.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
@@ -24,6 +33,8 @@ before_action :find_user_by_id
   end
 
   def find_user_by_id
+
     @user = User.find(params[:id])
+    authorize @user
   end
 end

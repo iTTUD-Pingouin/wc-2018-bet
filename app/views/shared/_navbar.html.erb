@@ -7,8 +7,16 @@
     <div class="navbar-rightpart hidden-xs">
       <% if user_signed_in? %> <!--USER CONNECTED -->
 
+        <%= form_tag games_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Trouve un match"
+          %>
+        <% end %>
+
         <% if current_user.group %>
-          <%= link_to "Classement #{current_user.group}", grouperank_games_path %>
+          <%= link_to "#{current_user.group}", grouperank_games_path %>
         <% end %>
 
         <p>|</p>

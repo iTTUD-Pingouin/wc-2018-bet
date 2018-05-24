@@ -19,11 +19,12 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    authorize @game
   end
 
   def create
     @game = Game.new(game_params)
-
+    authorize @game
     if @game.save
       redirect_to games_path
     else
@@ -49,18 +50,19 @@ class GamesController < ApplicationController
   end
 
   def my_group
-
+    @games = Game.all
+    authorize @games
   end
 
   def global_ranking
-
+    @games = Game.all
+    authorize @games
   end
 
   private
 
   def game_params
     params.require(:game).permit(:team1, :team2, :score1, :score2, :poule, :domflag, :extflag)
-
   end
 
   def find_game_by_id

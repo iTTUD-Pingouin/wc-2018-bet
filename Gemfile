@@ -11,6 +11,7 @@ gem 'redis'
 gem 'devise'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'pg_search'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

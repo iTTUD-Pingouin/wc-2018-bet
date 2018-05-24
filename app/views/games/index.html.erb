@@ -1,378 +1,440 @@
 
-<div class="container">
-  <h1>All games</h1>
 
-  <h2>Groupe A</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_A.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+<% if params[:query].blank? %>
+  <div class="container">
+    <h1>All games</h1>
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
-              </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
+    <h2>Groupe A</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_A.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-            <% end %>
 
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe B</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_B.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe B</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_B.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe C</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_C.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe C</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_C.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe D</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_D.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe D</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_D.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete,data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe E</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_E.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe E</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_E.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete,data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe F</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_F.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe F</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_F.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete,data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe G</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_G.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe G</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_G.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete,data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <!------- Card of all games --------------------------->
-  </div>
+      <!------- Card of all games --------------------------->
+    </div>
 
-  <h2>Groupe H</h2>
-  <div class="row">
-    <!------- Card of all games --------------------------->
-    <% @games_H.each do |game| %>
-      <%= link_to game_path(game) do  %>
-        <div class="col-xs-12 col-md-6">
-          <div  class="match-card">
+    <h2>Groupe H</h2>
+    <div class="row">
+      <!------- Card of all games --------------------------->
+      <% @games_H.each do |game| %>
+        <%= link_to game_path(game) do  %>
+          <div class="col-xs-12 col-md-6">
+            <div  class="match-card">
 
-            <div class="central-game-info">
-              <div class="home-team-lg text-center">
-                <p><%="#{game.team1}"%></p>
-                <%= image_tag(game.domflag) %>
+              <div class="central-game-info">
+                <div class="home-team-lg text-center">
+                  <p><%="#{game.team1}"%></p>
+                  <%= image_tag(game.domflag) %>
+                </div>
+                <div class="final-score">
+                  <div class="final-score-dom"><%= game.score1 %></div>
+                  <div class="final-score-ext"><%= game.score2 %></div>
+                </div>
+                <div class="ext-team-lg text-center">
+                  <p><%= "#{game.team2}" %></p>
+                  <%= image_tag(game.extflag) %>
+                </div>
               </div>
-              <div class="final-score">
-                <div class="final-score-dom"><%= game.score1 %></div>
-                <div class="final-score-ext"><%= game.score2 %></div>
-              </div>
-              <div class="ext-team-lg text-center">
-                <p><%= "#{game.team2}" %></p>
-                <%= image_tag(game.extflag) %>
-              </div>
-            </div>
 
-            <% if current_user.admin == true %>
-              <div class="admin-games-links">
-                <p>
-                  <%= link_to 'edit', edit_game_path(game) %> -
-                  <%= link_to 'delete', game_path(game), method: :delete %>
-                </p>
-              </div>
-            <% end %>
-
-            <div class="your-index-bet">
-              <% current_user.bets.each do |bet| %>
-                <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
-                  <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
-                <% end %>
+              <% if current_user.admin == true %>
+                <div class="admin-games-links">
+                  <p>
+                    <%= link_to 'edit', edit_game_path(game) %> -
+                    <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                  </p>
+                </div>
               <% end %>
+
+              <div class="your-index-bet">
+                <% current_user.bets.each do |bet| %>
+                  <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                    <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+      <!------- Card of all games --------------------------->
+    </div>
+
+
+    <% if current_user.admin == true %>
+      <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
     <% end %>
-    <!------- Card of all games --------------------------->
+
+  </div>
+
+<% else %>
+
+  <div class="container">
+    <h2>Votre recherche</h2>
+    <div class="row">
+      <% @games.each do |game| %>
+        <% if game.team1 == params[:query].capitalize || game.team2 == params[:query].capitalize  || game.poule == params[:query].capitalize  %>
+          <%= link_to game_path(game) do  %>
+            <div class="col-xs-12 col-md-6">
+              <div  class="match-card">
+
+                <div class="central-game-info">
+                  <div class="home-team-lg text-center">
+                    <p><%="#{game.team1}"%></p>
+                    <%= image_tag(game.domflag) %>
+                  </div>
+                  <div class="final-score">
+                    <div class="final-score-dom"><%= game.score1 %></div>
+                    <div class="final-score-ext"><%= game.score2 %></div>
+                  </div>
+                  <div class="ext-team-lg text-center">
+                    <p><%= "#{game.team2}" %></p>
+                    <%= image_tag(game.extflag) %>
+                  </div>
+                </div>
+
+                <% if current_user.admin == true %>
+                  <div class="admin-games-links">
+                    <p>
+                      <%= link_to 'edit', edit_game_path(game) %> -
+                      <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                    </p>
+                  </div>
+                <% end %>
+
+                <div class="your-index-bet">
+                  <% current_user.bets.each do |bet| %>
+                    <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                      <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
 
-  <% if current_user.admin == true %>
-    <%= link_to 'Add a match', new_game_path, class: 'btn btn-info'  %>
-  <% end %>
+<% end %>
 
-</div>
+
+
+
+
+
+
