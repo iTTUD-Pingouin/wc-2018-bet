@@ -19,7 +19,7 @@
  <!-------------------FORM TO FIND A GAME ------------------------------>
 
 
-        <% if current_user.group %>
+        <% if current_user.group && current_user.group.id != 1 %>
           <%= link_to "#{current_user.group.name}", grouperank_games_path %>
         <% end %>
 

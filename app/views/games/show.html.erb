@@ -31,18 +31,18 @@
 
 <!--------------- PARIS DU GROUPE --------------------->
   <div>
-    <h2>Les paris du groupe <%= current_user.group.name %></h2>
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Pseudo</th>
-          <th scope="col">Team 1</th>
-          <th scope="col">Team 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if current_user.group %>
+      <% if current_user.group && current_user.group.id != 1 %>
+        <h2>Les paris du groupe <%= current_user.group.name %></h2>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Equipe 1</th>
+            <th scope="col">Equipe 2 2</th>
+          </tr>
+        </thead>
+        <tbody>
           <% @game.bets.each do |bet| %>
             <% if bet.user.group == current_user.group %>
               <tr>
@@ -65,6 +65,7 @@
       </tbody>
       </table>
         <% else %>
+          <h2>Les paris de ton groupe</h2>
           <p>Tu n'as pas encore de groupe !</p>
           <p>Si tu veux comparer tes paris à ceux de tes potes, go sur ton profil, section 'Edit' pour rejoindre un groupe !!! <br>
           Profites-en aussi pour changer ou ajouter ton pseudo si ce n'est pas déjà fait pour bien peser dans le game</p>
@@ -81,9 +82,9 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Pseudo</th>
+          <th scope="col">Equipe 1</th>
+          <th scope="col">Equipe 2</th>
         </tr>
       </thead>
       <tbody>
