@@ -1,5 +1,54 @@
-<h1>RocketBet#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
+<div class="home-wrapper">
+  <div class="container text-center">
+    <h1>Pariez pour la gloire</h1>
+    <p>Prouve à tes potes qui est le meilleur bookmaker de la bande.</p>
 
-<%= link_to t(".sign_in", default: "C'est parti !"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to t(".sign_in", default: "Inscris toi !"), new_user_session_path, class: "btn btn-warning" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 text-center">
+      <div class="background-white to-bottom-30 feature_cards">
+        <%= image_tag 'award-icon.png', width: 100, class: '' %>
+        <h4>
+          Pas d'argent
+        </h4>
+        <p>
+          Ici, pas de paris d'argents. On parie pour la gloire, l'honneur, la reconnaissance éternelle. Humilier ses potes c'est déjà assez bon.
+        </p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 text-center">
+      <div class="background-white to-bottom-30 feature_cards">
+        <%= image_tag 'potes-icon.svg', width: 100, class: '' %>
+        <h4>
+          Deux classements
+        </h4>
+        <p>
+          Battre ses potes c'est cool. Battre tout le monde c'est mieux. Ton score apparaitra à la fois dans le classement de ton groupe mais aussi dans un classement général avec tous les autres parieurs.
+        </p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 text-center">
+      <div class="background-white to-bottom-30 feature_cards" id="rules-card">
+        <%= image_tag 'notes-icon.svg', width: 100, class: '' %>
+        <h4>
+          Règlement
+        </h4>
+        <p>
+          - Paris ouverts jusqu'à 1h avant le coup d'envoi du match
+        </p>
+        <p>
+          - Bon résultat : 2 points
+        </p>
+        <p>
+          - Score exact : 3 points
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
