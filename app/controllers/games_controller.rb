@@ -3,6 +3,7 @@ class GamesController < ApplicationController
 
 
   def index
+    @poules = Poule.all
     @games = policy_scope(Game)
     @games_A = Game.select { |game| game.poule == "A"}
     @games_B = Game.select { |game| game.poule == "B"}
@@ -18,6 +19,7 @@ class GamesController < ApplicationController
   end
 
   def new
+    @poules = Poule.all
     @game = Game.new
     authorize @game
   end
@@ -33,6 +35,7 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @poules = Poule.all
   end
 
   def update
@@ -62,7 +65,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:team1, :team2, :score1, :score2, :poule, :domflag, :extflag)
+    params.require(:game).permit(:team1, :team2, :score1, :score2, :poule, :domflag, :extflag, :poule_id)
   end
 
   def find_game_by_id

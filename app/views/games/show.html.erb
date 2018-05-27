@@ -5,7 +5,7 @@
     -
     <%= image_tag("#{@game.extflag}") %>
 
-  <p>(Groupe <%= @game.poule %>)</p>
+  <p>(Groupe <%= @game.poule.name %>)</p>
   <div>
     <% if Game.exists?(@game.id - 1)%>
       <%= link_to 'Match précédent', game_path(@game.id-1)  %>

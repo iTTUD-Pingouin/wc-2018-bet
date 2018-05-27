@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   has_many :bets, dependent: :destroy
   has_many :users, through: :bets
+  belongs_to :poule
 
 
   include PgSearch

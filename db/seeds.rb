@@ -24,11 +24,22 @@ User.create(email: 'travisdbickle@outlook.fr', password: 'madrid&"')
 User.create(email: 'ouistiti@hotmail.fr', password: '123456')
 puts 'Users created !'
 
+puts 'Creating all poules'
+Poule.create(name: 'A')
+Poule.create(name: 'B')
+Poule.create(name: 'C')
+Poule.create(name: 'D')
+Poule.create(name: 'E')
+Poule.create(name: 'F')
+Poule.create(name: 'G')
+Poule.create(name: 'H')
+puts 'Poules created !'
+
 
 puts 'creating 4 firsts games'
-Game.create(team1: 'France', team2: 'Espagne', poule: 'A', domflag: 'France.png', extflag: 'Spain.png')
-Game.create(team1: 'Brésil', team2: 'Croatie', poule: 'A', domflag: 'Brazil.png', extflag: 'Croatia.png')
-Game.create(team1: 'Japon', team2: 'Suisse', poule: 'B', domflag: 'Japan.png', extflag: 'Suisse.png')
-Game.create(team1: 'Suede', team2: 'Nigeria', poule: 'B', domflag: 'Sweden.png', extflag: 'Nigeria.png')
+Game.create(team1: 'France', team2: 'Espagne', poule_id: 1, domflag: 'France.png', extflag: 'Spain.png')
+Game.create(team1: 'Brésil', team2: 'Croatie', poule_id: 1, domflag: 'Brazil.png', extflag: 'Croatia.png')
+Game.create(team1: 'Japon', team2: 'Suisse', poule_id: 2, domflag: 'Japan.png', extflag: 'Suisse.png')
+Game.create(team1: 'Suede', team2: 'Nigeria', poule_id: 2, domflag: 'Sweden.png', extflag: 'Nigeria.png')
 puts 'Games created'
 puts 'Ready to code !'
