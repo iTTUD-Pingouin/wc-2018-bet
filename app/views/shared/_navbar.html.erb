@@ -6,17 +6,8 @@
     </div>
     <div class="navbar-rightpart hidden-xs">
 
-<!-------------------FORM TO FIND A GAME ------------------------------>
-      <% if user_signed_in? %> <!--USER CONNECTED -->
-
-        <%= form_tag games_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "France, A ..."
-          %>
-        <% end %>
- <!-------------------FORM TO FIND A GAME ------------------------------>
+<!------------------------USER CONNECTED ---------------------->
+      <% if user_signed_in? %>
 
 
         <% if current_user.group && current_user.group.id != 1 %>
@@ -40,12 +31,19 @@
         <%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %>
+<!------------------------USER CONNECTED ---------------------->
 
-      <% else %> <!--USER NOT CONNECTED -->
+<!------------- USER NOT CONNECTED --------------->
+      <% else %>
 
         <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
+<!------------- USER NOT CONNECTED --------------->
     </div>
+
+
+
+    <!------------- XS VERSION --------------->
 
     <div class="hidden-sm hidden-md hidden-lg">
       <div class="container">
