@@ -1,6 +1,15 @@
 
 
-<% if params[:query].blank? %>
+<div class="container">
+  <%= form_tag games_path, method: :get, class: 'form-inline' do %>
+    <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control' %>
+    <%= submit_tag "Par pays", class: "btn btn-default" %>
+  <% end %>
+</div>
+
+
+
+<% if params[:team].blank? %>
   <div class="container">
     <div class="row">
       <h1>All games</h1>
@@ -55,14 +64,14 @@
   </div>
 
 
-<!-------------------- en cas de recherche ------------>
+<!-------------------- en cas de recherche avec le select pays------------>
 <% else %>
 
   <div class="container">
-    <h2>Votre recherche</h2>
+    <h2><%= params[:team]%> : tous les matchs </h2>
     <div class="row">
       <% @games.each do |game| %>
-        <% if game.team1 == params[:query].capitalize || game.team2 == params[:query].capitalize  || game.poule == params[:query].capitalize  %>
+        <% if game.team1 == params[:team].capitalize || game.team2 == params[:team].capitalize  || game.poule == params[:team].capitalize  %>
           <%= link_to game_path(game) do  %>
             <div class="col-xs-12 col-md-6">
               <div  class="match-card">

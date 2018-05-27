@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
   before_action :find_game_by_id, only: [:show, :edit, :update, :destroy]
 
-
   def index
+    @teams = ['Arabie Saoudite', 'Argentine', 'Australie', 'Belgique', 'Brésil', 'Colombie', 'Costa Rica', 'Croatie', 'Danemark', 'Egypte', 'Angleterre', 'France', 'Allemagne', 'Islande', 'Iran', 'Japon', 'Mexique', 'Maroc', 'Nigéria', 'Panama', 'Pérou', 'Pologne', 'Portugal', 'Russie', 'Sénégal', 'Serbie', 'Corée du Sud', 'Espagne', 'Suisse', 'Suède', 'Tunisie', 'Uruguay'].sort.unshift(' ')
     @poules = Poule.all
     @games = policy_scope(Game)
   end
