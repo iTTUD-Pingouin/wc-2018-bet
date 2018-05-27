@@ -1,7 +1,7 @@
 
 
 <div class="container">
-  <%= form_tag games_path, method: :get, class: 'form-inline' do %>
+  <%= form_tag games_path, method: :get, class: 'form-inline to-bottom-30' do %>
     <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control' %>
     <%= submit_tag "Par pays", class: "btn btn-default" %>
   <% end %>
