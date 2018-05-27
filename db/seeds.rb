@@ -7,39 +7,39 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'creating empty group ...'
-Group.create(name: "Je n'ai pas encore de groupe")
+Group.create!(name: "Je n'ai pas encore de groupe")
 puts 'Empty group created'
 
 puts 'creating two real groups ...'
-Group.create(name: "Z5")
-Group.create(name: "Le Wagon")
+Group.create!(name: "Z5")
+Group.create!(name: "Le Wagon")
 puts 'Z5 and Le Wagon created !'
 
 puts 'creating admin: "guillaume.dutti@live.fr" ...'
-User.create(email: 'guillaume.dutti@live.fr', password: 'madrid&"', group_id: 1, admin: true)
+User.create!(email: 'guillaume.dutti@live.fr', password: 'madrid&"', group_id: 1, admin: true)
 puts 'Admin created !'
 
 puts 'creating 2 users: "guillaume.dutti@live.fr" ...'
-User.create(email: 'travisdbickle@outlook.fr', password: 'madrid&"')
-User.create(email: 'ouistiti@hotmail.fr', password: '123456')
+User.create!(email: 'travisdbickle@outlook.fr', password: 'madrid&"')
+User.create!(email: 'ouistiti@hotmail.fr', password: '123456')
 puts 'Users created !'
 
 puts 'Creating all poules'
-Poule.create(name: 'A')
-Poule.create(name: 'B')
-Poule.create(name: 'C')
-Poule.create(name: 'D')
-Poule.create(name: 'E')
-Poule.create(name: 'F')
-Poule.create(name: 'G')
-Poule.create(name: 'H')
+Poule.create!(name: 'A')
+Poule.create!(name: 'B')
+Poule.create!(name: 'C')
+Poule.create!(name: 'D')
+Poule.create!(name: 'E')
+Poule.create!(name: 'F')
+Poule.create!(name: 'G')
+Poule.create!(name: 'H')
 puts 'Poules created !'
 
 
 puts 'creating 4 firsts games'
-Game.create(team1: 'France', team2: 'Espagne', poule_id: 1, domflag: 'France.png', extflag: 'Spain.png')
-Game.create(team1: 'Brésil', team2: 'Croatie', poule_id: 1, domflag: 'Brazil.png', extflag: 'Croatia.png')
-Game.create(team1: 'Japon', team2: 'Suisse', poule_id: 2, domflag: 'Japan.png', extflag: 'Suisse.png')
-Game.create(team1: 'Suede', team2: 'Nigeria', poule_id: 2, domflag: 'Sweden.png', extflag: 'Nigeria.png')
+Game.create!(team1: 'France', team2: 'Espagne', poule_id: 1, domflag: 'France.png', extflag: 'Spain.png')
+Game.create!(team1: 'Brésil', team2: 'Croatie', poule_id: 1, domflag: 'Brazil.png', extflag: 'Croatia.png')
+Game.create!(team1: 'Japon', team2: 'Suisse', poule_id: 2, domflag: 'Japan.png', extflag: 'Suisse.png')
+Game.create!(team1: 'Suede', team2: 'Nigeria', poule_id: 2, domflag: 'Sweden.png', extflag: 'Nigeria.png')
 puts 'Games created'
 puts 'Ready to code !'
