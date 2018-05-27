@@ -6,6 +6,7 @@ before_action :find_user_by_id
 
   def edit
     if @user == current_user || current_user.admin
+      @groups = Group.all
       @user
     else
       redirect_to root_path
@@ -29,11 +30,10 @@ before_action :find_user_by_id
   private
 
   def user_params
-    params.require(:user).permit(:pseudo, :group)
+    params.require(:user).permit(:pseudo, :group_id)
   end
 
   def find_user_by_id
-
     @user = User.find(params[:id])
     authorize @user
   end

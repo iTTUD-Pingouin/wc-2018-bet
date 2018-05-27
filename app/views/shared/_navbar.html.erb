@@ -5,18 +5,22 @@
       <%= link_to 'RocketBet', games_path %>
     </div>
     <div class="navbar-rightpart hidden-xs">
+
+<!-------------------FORM TO FIND A GAME ------------------------------>
       <% if user_signed_in? %> <!--USER CONNECTED -->
 
         <%= form_tag games_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Trouve un match"
+            placeholder: "France, A ..."
           %>
         <% end %>
+ <!-------------------FORM TO FIND A GAME ------------------------------>
+
 
         <% if current_user.group %>
-          <%= link_to "#{current_user.group}", grouperank_games_path %>
+          <%= link_to "#{current_user.group.name}", grouperank_games_path %>
         <% end %>
 
         <p>|</p>
@@ -47,12 +51,12 @@
       <div class="container">
         <div class="row">
           <% if user_signed_in? %> <!--USER CONNECTED -->
-            <div class="col-xs-3">
+            <div class="col-xs-3">r
               <%= link_to 'All games', games_path, class: 'btn btn-default' %>
             </div>
             <div class="col-xs-3">
               <% if current_user.group %>
-                <%= link_to "#{current_user.group}", grouperank_games_path, class: 'btn btn-default' %>
+                <%= link_to "#{current_user.group.name}", grouperank_games_path, class: 'btn btn-default' %>
               <% end %>
             </div>
             <div class="col-xs-3">
