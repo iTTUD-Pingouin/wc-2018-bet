@@ -1,12 +1,10 @@
 <div class="container">
 <!--------------- INFORMATIONS DU MATCH ---------------->
-  <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
-    <%= image_tag("#{@game.domflag}") %>
-    -
-    <%= image_tag("#{@game.extflag}") %>
+  <div class="banner-show text-center">
+    <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
 
-  <p>(Groupe <%= @game.poule.name %>)</p>
-  <div>
+    <p>(Groupe <%= @game.poule.name %>)</p>
+
     <% if Game.exists?(@game.id - 1)%>
       <%= link_to 'Match précédent', game_path(@game.id-1)  %>
     <% end %>
@@ -14,15 +12,23 @@
       <%= link_to 'Match suivant', game_path(@game.id+1)  %>
     <% end %>
 
-    <h2>Resultat</h2>
-    <% if @game.score1 && @game.score2 %>
-      <p><%= "#{@game.score1} - #{@game.score2}" %></p>
-    <% else %>
-      <p>Not played yet</p>
-    <% end %>
-  </div>
+    <div class="drapeaux">
+      <%= image_tag("#{@game.domflag}") %>
+      -
+      <%= image_tag("#{@game.extflag}") %>
+    </div>
 
-  <%= link_to 'Donne ton prono', new_game_bet_path(@game) %>
+    <div>
+      <h2>Resultat</h2>
+      <% if @game.score1 && @game.score2 %>
+        <p><%= "#{@game.score1} - #{@game.score2}" %></p>
+      <% else %>
+        <p>Not played yet</p>
+      <% end %>
+    </div>
+
+    <%= link_to 'Donne ton prono', new_game_bet_path(@game) %>
+  </div>
 
 <!--------------- INFORMATIONS DU MATCH ---------------->
 
