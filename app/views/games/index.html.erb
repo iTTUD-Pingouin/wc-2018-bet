@@ -1,30 +1,33 @@
 
 
 <div class="container">
-  <%= form_tag games_path, method: :get, class: 'form-inline to-bottom-30 text-center' do %>
-    <%= label_tag 'Par groupe' %>
-    <%= submit_tag 'A', value: 'A',class: 'btn btn-primary'%>
-    <%= submit_tag 'B', value: 'B',class: 'btn btn-primary'%>
-    <%= submit_tag 'C', value: 'C',class: 'btn btn-primary'%>
-    <%= submit_tag 'D', value: 'D',class: 'btn btn-primary'%>
-    <%= submit_tag 'E', value: 'E',class: 'btn btn-primary'%>
-    <%= submit_tag 'F', value: 'F',class: 'btn btn-primary'%>
-    <%= submit_tag 'G', value: 'G',class: 'btn btn-primary'%>
-    <%= submit_tag 'H', value: 'H',class: 'btn btn-primary'%>
-
-    <%= label_tag 'Par groupe' %>
-    <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control', :prompt => "#{params[:team]}", :onchange => "this.form.submit()" %>
-  <% end %>
 </div>
 
 
 
-<% if params[:team].blank? && params[:commit].blank?  %>
+<% if params[:team].blank? && params[:commit].blank? || params[:commit] == 'Tous les matchs' %>
   <div class="container">
     <div class="row">
       <div class="allgames-h1">
         <h1>All games</h1>
         <div class="colored-underline">
+        </div>
+        <div class="form-selector">
+          <%= form_tag games_path, method: :get, class: 'form-inline' do %>
+            <%= label_tag 'Par groupe' %>
+            <%= submit_tag 'A', value: 'A',class: 'btn btn-primary to-left-15'%>
+            <%= submit_tag 'B', value: 'B',class: 'btn btn-primary'%>
+            <%= submit_tag 'C', value: 'C',class: 'btn btn-primary'%>
+            <%= submit_tag 'D', value: 'D',class: 'btn btn-primary'%>
+            <%= submit_tag 'E', value: 'E',class: 'btn btn-primary'%>
+            <%= submit_tag 'F', value: 'F',class: 'btn btn-primary'%>
+            <%= submit_tag 'G', value: 'G',class: 'btn btn-primary'%>
+            <%= submit_tag 'H', value: 'H',class: 'btn btn-primary to-right-15'%>
+
+            <%= label_tag 'Par pays' %>
+            <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control', :prompt => "#{params[:team]}", :onchange => "this.form.submit()" %>
+            <%= submit_tag 'Tous les matchs', value: 'Tous les matchs',class: 'btn btn-default to-left-15'%>
+          <% end %>
         </div>
       </div>
 
@@ -80,8 +83,29 @@
 <% elsif params[:commit] %>
 
   <div class="container">
-    <h2><%= params[:commit]%> : tous les matchs </h2>
-    <div class="row">
+    <div class="allgames-h1">
+      <h1><%= params[:commit]%> : tous les matchs</h1>
+      <div class="colored-underline2">
+      </div>
+      <div class="form-selector">
+        <%= form_tag games_path, method: :get, class: 'form-inline' do %>
+          <%= label_tag 'Par groupe' %>
+          <%= submit_tag 'A', value: 'A',class: 'btn btn-primary to-left-15'%>
+          <%= submit_tag 'B', value: 'B',class: 'btn btn-primary'%>
+          <%= submit_tag 'C', value: 'C',class: 'btn btn-primary'%>
+          <%= submit_tag 'D', value: 'D',class: 'btn btn-primary'%>
+          <%= submit_tag 'E', value: 'E',class: 'btn btn-primary'%>
+          <%= submit_tag 'F', value: 'F',class: 'btn btn-primary'%>
+          <%= submit_tag 'G', value: 'G',class: 'btn btn-primary'%>
+          <%= submit_tag 'H', value: 'H',class: 'btn btn-primary to-right-15'%>
+
+          <%= label_tag 'Par pays' %>
+          <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control', :prompt => "#{params[:team]}", :onchange => "this.form.submit()" %>
+          <%= submit_tag 'Tous les matchs', value: 'Tous les matchs',class: 'btn btn-default to-left-15'%>
+        <% end %>
+      </div>
+    </div>
+    <div class="row to-bottom-30">
       <% @games.each do |game| %>
         <% if game.poule.name == params[:commit] %>
           <%= link_to game_path(game) do  %>
@@ -132,8 +156,29 @@
 <% else %>
 
   <div class="container">
-    <h2><%= params[:team]%> : tous les matchs </h2>
-    <div class="row">
+    <div class="allgames-h1">
+      <h1><%= params[:team]%> : tous les matchs</h1>
+      <div class="colored-underline2">
+      </div>
+      <div class="form-selector">
+        <%= form_tag games_path, method: :get, class: 'form-inline' do %>
+          <%= label_tag 'Par groupe' %>
+          <%= submit_tag 'A', value: 'A',class: 'btn btn-primary to-left-15'%>
+          <%= submit_tag 'B', value: 'B',class: 'btn btn-primary'%>
+          <%= submit_tag 'C', value: 'C',class: 'btn btn-primary'%>
+          <%= submit_tag 'D', value: 'D',class: 'btn btn-primary'%>
+          <%= submit_tag 'E', value: 'E',class: 'btn btn-primary'%>
+          <%= submit_tag 'F', value: 'F',class: 'btn btn-primary'%>
+          <%= submit_tag 'G', value: 'G',class: 'btn btn-primary'%>
+          <%= submit_tag 'H', value: 'H',class: 'btn btn-primary to-right-15'%>
+
+          <%= label_tag 'Par pays' %>
+          <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control', :prompt => "#{params[:team]}", :onchange => "this.form.submit()" %>
+          <%= submit_tag 'Tous les matchs', value: 'Tous les matchs',class: 'btn btn-default to-left-15'%>
+        <% end %>
+      </div>
+    </div>
+    <div class="row to-bottom-30">
       <% @games.each do |game| %>
         <% if game.team1 == params[:team].capitalize || game.team2 == params[:team].capitalize  || game.poule == params[:team].capitalize  %>
           <%= link_to game_path(game) do  %>

@@ -6,6 +6,10 @@
   background-image: linear-gradient(-225deg, rgba(0,50,100,0.5) 0%, rgba(0,36,50,0.5) 50%),
                     asset-url('image-game-show-banner.jpg');
   background-size: cover;
+  box-shadow: 1px 1px 2px black;
+  a {
+    color: white;
+  }
 }
 
 .admin-games-links {
@@ -95,3 +99,12 @@
   width: 214px;
 }
 
+.colored-underline2 {
+    height: 16px;
+    background-color: #5DB498;
+    position: relative;
+    top: -35px;
+    z-index: -100;
+    opacity: 0.8;
+    width: 402px;
+}
