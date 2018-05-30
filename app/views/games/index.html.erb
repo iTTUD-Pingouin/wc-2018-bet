@@ -1,18 +1,32 @@
 
 
 <div class="container">
-  <%= form_tag games_path, method: :get, class: 'form-inline to-bottom-30' do %>
-    <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control' %>
-    <%= submit_tag "Par pays", class: "btn btn-default" %>
+  <%= form_tag games_path, method: :get, class: 'form-inline to-bottom-30 text-center' do %>
+    <%= label_tag 'Par groupe' %>
+    <%= submit_tag 'A', value: 'A',class: 'btn btn-primary'%>
+    <%= submit_tag 'B', value: 'B',class: 'btn btn-primary'%>
+    <%= submit_tag 'C', value: 'C',class: 'btn btn-primary'%>
+    <%= submit_tag 'D', value: 'D',class: 'btn btn-primary'%>
+    <%= submit_tag 'E', value: 'E',class: 'btn btn-primary'%>
+    <%= submit_tag 'F', value: 'F',class: 'btn btn-primary'%>
+    <%= submit_tag 'G', value: 'G',class: 'btn btn-primary'%>
+    <%= submit_tag 'H', value: 'H',class: 'btn btn-primary'%>
+
+    <%= label_tag 'Par groupe' %>
+    <%= select_tag 'team', options_for_select(@teams.collect{ |u| u }), class: 'form-control', :prompt => "#{params[:team]}", :onchange => "this.form.submit()" %>
   <% end %>
 </div>
 
 
 
-<% if params[:team].blank? %>
+<% if params[:team].blank? && params[:commit].blank?  %>
   <div class="container">
     <div class="row">
-      <h1>All games</h1>
+      <div class="allgames-h1">
+        <h1>All games</h1>
+        <div class="colored-underline">
+        </div>
+      </div>
 
       <!------- Card of all games --------------------------->
       <% @poules.each do |poule|%>
@@ -60,6 +74,56 @@
         <% end %>
 
       <!------- Card of all games --------------------------->
+    </div>
+  </div>
+
+<% elsif params[:commit] %>
+
+  <div class="container">
+    <h2><%= params[:commit]%> : tous les matchs </h2>
+    <div class="row">
+      <% @games.each do |game| %>
+        <% if game.poule.name == params[:commit] %>
+          <%= link_to game_path(game) do  %>
+            <div class="col-xs-12 col-md-6">
+              <div  class="match-card">
+
+                <div class="central-game-info">
+                  <div class="home-team-lg text-center">
+                    <p><%="#{game.team1}"%></p>
+                    <%= image_tag(game.domflag) %>
+                  </div>
+                  <div class="final-score">
+                    <div class="final-score-dom"><%= game.score1 %></div>
+                    <div class="final-score-ext"><%= game.score2 %></div>
+                  </div>
+                  <div class="ext-team-lg text-center">
+                    <p><%= "#{game.team2}" %></p>
+                    <%= image_tag(game.extflag) %>
+                  </div>
+                </div>
+
+                <% if current_user.admin == true %>
+                  <div class="admin-games-links">
+                    <p>
+                      <%= link_to 'edit', edit_game_path(game) %> -
+                      <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+                    </p>
+                  </div>
+                <% end %>
+
+                <div class="your-index-bet">
+                  <% current_user.bets.each do |bet| %>
+                    <% if bet.game.team1 == game.team1 && bet.game.team2 == game.team2 %>
+                      <p>Ton pari : <%= bet.score1bet %> - <%= bet.score2bet %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
