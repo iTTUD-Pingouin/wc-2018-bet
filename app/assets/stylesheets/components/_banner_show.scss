@@ -5,6 +5,50 @@
     color: white;
     margin: 0;
   }
+  p {
+    color: white;
+    font-weight: lighter;
+    opacity: 0.7;
+  }
   box-shadow: 1px 1px 3px black;
+  height: 350px;
+}
 
+.fa-chevron-circle-left:before {
+  color: white;
+}
+
+.fa-chevron-circle-right:before {
+  color: white;
+}
+
+.drapeaux {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.score-dom-show {
+  margin-top: 10px;
+  h3 {
+    color: white;
+  }
+}
+
+.not-played-show {
+  margin-top: 39px;
+  color: white;
+  font-weight: lighter
+}
+
+.game-and-group {
+  padding-top: 25px;
+}
+
+
+.h2paris-du-groupe {
+  margin-top: 60px;
+}
+
+.add-space {
+  height: 15px;
 }

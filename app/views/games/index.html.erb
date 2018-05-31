@@ -1,10 +1,4 @@
 
-
-<div class="container">
-</div>
-
-
-
 <% if params[:team].blank? && params[:commit].blank? || params[:commit] == 'Tous les matchs' %>
   <div class="container">
     <div class="row">
@@ -34,11 +28,11 @@
       <!------- Card of all games --------------------------->
       <% @poules.each do |poule|%>
         <h2>Groupe <%= poule.name %></h2>
+        <div class="add-space"></div>
         <% poule.games.each do |game|%>
             <%= link_to game_path(game) do  %>
               <div class="col-xs-12 col-md-6">
                 <div  class="match-card">
-
                   <div class="central-game-info">
                     <div class="home-team-lg text-center">
                       <p><%="#{game.team1}"%></p>

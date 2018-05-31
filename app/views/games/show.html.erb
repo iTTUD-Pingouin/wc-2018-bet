@@ -1,33 +1,47 @@
 <div class="container">
 <!--------------- INFORMATIONS DU MATCH ---------------->
   <div class="banner-show text-center to-bottom-30">
-    <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
 
-    <p>(Groupe <%= @game.poule.name %>)</p>
+    <div class="game-and-group">
+      <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
+      <p>(Groupe <%= @game.poule.name %>)</p>
 
-    <% if Game.exists?(@game.id - 1)%>
-      <%= link_to 'Match précédent', game_path(@game.id-1)  %>
-    <% end %>
-    <% if Game.exists?(@game.id + 1) %>
-      <%= link_to 'Match suivant', game_path(@game.id+1)  %>
-    <% end %>
+      <% if Game.exists?(@game.id - 1)%>
+        <%= link_to game_path(@game.id-1) do %>
+          <i class="fas fa-chevron-circle-left whitefa"></i>
+        <% end %>
+      <% end %>
+      <% if Game.exists?(@game.id + 1) %>
+        <%= link_to game_path(@game.id+1) do %>
+          <i class="fas fa-chevron-circle-right whitefa"></i>
+        <% end %>
+      <% end %>
+
+    </div>
 
     <div class="drapeaux">
-      <%= image_tag("#{@game.domflag}") %>
-      -
-      <%= image_tag("#{@game.extflag}") %>
-    </div>
-
-    <div>
-      <h2>Resultat</h2>
-      <% if @game.score1 && @game.score2 %>
-        <p><%= "#{@game.score1} - #{@game.score2}" %></p>
+      <div class="dom-side">
+        <%= image_tag("#{@game.domflag}") %>
+      </div>
+      <% if @game.score1 %>
+        <div class="score-dom-show">
+          <h1>1</h1>
+        </div>
+        <div class="score-dom-show">
+          <h1>1</h1>
+        </div>
       <% else %>
-        <p>Not played yet</p>
+        <h3 class="not-played-show">Match pas encore joué</h3>
       <% end %>
+      <div class="ext-side">
+        <%= image_tag("#{@game.extflag}") %>
+      </div>
     </div>
 
-    <%= link_to 'Donne ton prono', new_game_bet_path(@game) %>
+
+
+
+    <%= link_to 'Donne ton prono', new_game_bet_path(@game), class: 'btn btn-warning btn-lg' %>
   </div>
 
 <!--------------- INFORMATIONS DU MATCH ---------------->
@@ -39,13 +53,17 @@
   <div>
     <table class="table table-striped">
       <% if current_user.group && current_user.group.id != 1 %>
-        <h2>Les paris du groupe <%= current_user.group.name %></h2>
+        <div class="h2paris-du-groupe">
+          <h2>Les paris du groupe <%= current_user.group.name %></h2>
+        </div>
+        <div class="add-space">
+        </div>
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Pseudo</th>
             <th scope="col">Equipe 1</th>
-            <th scope="col">Equipe 2 2</th>
+            <th scope="col">Equipe 2</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +78,7 @@
                     <%= bet.user.email %>
                   <% end %>
                   <% if policy(bet).update? %>
-                    <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+                    <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>
                   <% end %>
                 </td>
                 <td><%= bet.score1bet %></td>
@@ -68,14 +86,16 @@
               </tr>
             <% end %>
           <% end %>
-      </tbody>
-      </table>
-        <% else %>
+        </tbody>
+        </table>
+      <% else %>
+        <div class="h2paris-du-groupe">
           <h2>Les paris de ton groupe</h2>
-          <p>Tu n'as pas encore de groupe !</p>
-          <p>Si tu veux comparer tes paris à ceux de tes potes, go sur ton profil, section 'Edit' pour rejoindre un groupe !!! <br>
-          Profites-en aussi pour changer ou ajouter ton pseudo si ce n'est pas déjà fait pour bien peser dans le game</p>
-        <% end %>
+        </div>
+        <p>Tu n'as pas encore de groupe !</p>
+        <p>Si tu veux comparer tes paris à ceux de tes potes, go sur ton profil, section 'Edit' pour rejoindre un groupe !!! <br>
+        Profites-en aussi pour changer ou ajouter ton pseudo si ce n'est pas déjà fait pour bien peser dans le game</p>
+      <% end %>
   </div>
 <!--------------- PARIS DU GROUPE --------------------->
 
@@ -83,7 +103,11 @@
 
 <!--------------- TOUS LES PARIS ---------------->
   <div>
+    <div class="add-space">
+    </div>
     <h2>Les pronostics de tous</h2>
+    <div class="add-space">
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -104,7 +128,7 @@
                 <%= bet.user.email %>
               <% end %>
               <% if policy(bet).update? %>
-                <%= link_to 'Change ton prono', edit_bet_path(bet) %>
+                <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>
               <% end %>
             </td>
             <td><%= bet.score1bet %></td>
@@ -116,7 +140,7 @@
   </div>
 <!--------------- ITERATION SUR LES PARIS ---------------->
 
-  <%= link_to 'Back all games', games_path %>
+  <%= link_to 'Back all games', games_path, class: 'btn btn-default' %>
 
 
 
