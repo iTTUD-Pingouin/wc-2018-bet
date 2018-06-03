@@ -60,7 +60,7 @@
         </div>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">Pseudo</th>
             <th scope="col">Equipe 1</th>
             <th scope="col">Equipe 2</th>
@@ -70,13 +70,18 @@
           <% @game.bets.each do |bet| %>
             <% if bet.user.group == current_user.group %>
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">
+                  <%= cl_image_tag bet.user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %>
+                </th>
                 <td>
-                  <% if bet.user.pseudo %>
-                    <%= bet.user.pseudo %>
-                  <% else %>
-                    <%= bet.user.email %>
+                  <%= link_to user_path(bet.user) do %>
+                    <% if bet.user.pseudo %>
+                      <%= bet.user.pseudo %>
+                    <% else %>
+                      <%= bet.user.email %>
+                    <% end %>
                   <% end %>
+
                   <% if policy(bet).update? %>
                     <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>
                   <% end %>
@@ -111,7 +116,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col"></th>
           <th scope="col">Pseudo</th>
           <th scope="col">Equipe 1</th>
           <th scope="col">Equipe 2</th>
@@ -120,12 +125,15 @@
       <tbody>
         <% @game.bets.each do |bet| %>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= cl_image_tag bet.user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %></th>
             <td>
-              <% if bet.user.pseudo %>
-                <%= bet.user.pseudo %>
-              <% else %>
-                <%= bet.user.email %>
+
+              <%= link_to user_path(bet.user) do  %>
+                <% if bet.user.pseudo %>
+                  <%= bet.user.pseudo %>
+                <% else %>
+                  <%= bet.user.email %>
+                <% end %>
               <% end %>
               <% if policy(bet).update? %>
                 <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>

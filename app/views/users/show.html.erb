@@ -1,5 +1,9 @@
 <div class="container">
   <div class="divs-user-profile infos-user text-center">
+    <div class="photo-user-rounded">
+        <%= cl_image_tag @user.photo, height: 250, width: 250, crop: :fill, default_image: "avatar.jpg" %>
+    </div>
+
     <% if @user.pseudo %>
       <h1><%= @user.pseudo %></h1>
     <% else %>

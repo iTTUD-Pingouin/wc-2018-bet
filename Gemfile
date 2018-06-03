@@ -16,6 +16,7 @@ gem 'pg_search'
 
 #uploader de photos
 gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
