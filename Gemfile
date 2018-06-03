@@ -13,6 +13,10 @@ gem 'jquery-rails'
 gem 'pundit'
 gem 'pg_search'
 
+
+#uploader de photos
+gem 'cloudinary'
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 5.0.9'
