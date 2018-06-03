@@ -1,7 +1,9 @@
 
 <% if params[:team].blank? && params[:commit].blank? || params[:commit] == 'Tous les matchs' %>
   <div class="container">
+
     <div class="row">
+
       <div class="allgames-h1">
         <h1>All games</h1>
         <div class="colored-underline">
@@ -24,6 +26,12 @@
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+
+
+   <div class="container">
+<div class="row">
 
       <!------- Card of all games --------------------------->
       <% @poules.each do |poule|%>

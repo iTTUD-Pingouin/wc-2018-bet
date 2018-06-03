@@ -54,6 +54,11 @@ class GamesController < ApplicationController
     authorize @games
   end
 
+  def nogroup
+    @games = Game.all
+    authorize @games
+  end
+
   private
 
   def game_params

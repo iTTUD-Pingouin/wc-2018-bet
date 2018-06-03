@@ -2,16 +2,26 @@
 
   <div class="navbar-rocket-bet">
 
-    <div class="navbar-leftpart hidden-xs">
-      <%= link_to 'RocketBet', games_path %>
+    <div class="navbar-leftpart">
+      <%= link_to "/" do%>
+        <%= image_tag "RocketBetLogo.png", height: 80 %>
+      <% end %>
     </div>
+
+    <%= link_to "/" do%>
+        <%= image_tag "wclogo.png", height: 80 %>
+      <% end %>
+
     <div class="navbar-rightpart hidden-xs">
 
 <!------------------------USER CONNECTED ---------------------->
       <% if user_signed_in? %>
 
 
-        <% if current_user.group && current_user.group.id != 1 %>
+
+        <% if current_user.group.name == "Je n'ai pas encore de groupe"  %>
+            <%= link_to "Mon groupe", nogroup_path %>
+        <% elsif current_user.group && current_user.group.id != 1 %>
           <%= link_to "#{current_user.group.name}", grouperank_games_path %>
         <% end %>
 
@@ -21,11 +31,7 @@
 
         <p>|</p>
 
-        <%= link_to 'My profile', user_path(current_user) %>
-
-        <p>|</p>
-
-        <p>Photo</p>
+        <%= link_to 'Mon profil', user_path(current_user) %>
 
         <p>|</p>
 

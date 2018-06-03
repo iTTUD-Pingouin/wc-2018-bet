@@ -1,16 +1,17 @@
 // Specific CSS for your home-page
 .home-wrapper {
-  height: 100vh;
+  height: 50vh;
   background-image: linear-gradient(-225deg, rgba(0,50,100,0.5) 0%, rgba(0,36,50,0.5) 50%), asset-url('home-banner-image.jpg');
   background-size: cover;
   display: flex;
   align-items: center;
-  h1 {
-    color: white;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.2)
+  img {
+    margin-bottom: -30px;
   }
   p {
-    color: rgba(260, 260, 260, 0.5);
+    color: rgba(260, 260, 260, 0.7);
     font-weight: lighter;
   }
 }
+
+

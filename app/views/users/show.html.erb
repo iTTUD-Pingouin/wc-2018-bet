@@ -1,44 +1,51 @@
 <div class="container">
-  <% if @user.pseudo %>
-    <h1><%= @user.pseudo %></h1>
-  <% else %>
-    <h1><%= @user.email %></h1>
-  <% end %>
-
-    <p>Pseudo : <%= @user.pseudo %> </p>
-
-    <% if @user == current_user %>
-      <p>Email : <%= @user.email %> </p>
+  <div class="divs-user-profile infos-user text-center">
+    <% if @user.pseudo %>
+      <h1><%= @user.pseudo %></h1>
+    <% else %>
+      <h1><%= @user.email %></h1>
     <% end %>
 
-    <p>Groupe : <%= @user.group.name %> </p>
+      <p>Pseudo : <%= @user.pseudo %> </p>
 
-
-
-  <% if @user == current_user %>
-    <%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
-    <%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
-  <% end %>
-
-  <h3>Pronostics</h3>
-
-  <% @user.bets.each do |bet| %>
-    <p>
-      <%= bet.game.team1 %>
-      <%= bet.score1bet %>
-      -
-      <%= bet.game.team2 %>
-      <%= bet.score2bet %>
-
-
-      <% if bet.user == current_user %>
-        <%= link_to 'Change ton prono', edit_bet_path(bet) %> |
-        <%= link_to 'Supprime ton prono', bet_path(bet), method: :delete %>
+      <% if @user == current_user %>
+        <p>Email : <%= @user.email %> </p>
       <% end %>
-    </p>
-  <% end %>
+
+      <p>Groupe : <%= @user.group.name %> </p>
 
 
+
+    <% if @user == current_user %>
+      <%= link_to 'Edit my profile', edit_user_path(@user), class: 'btn btn-success' %>
+      <%= link_to 'Delete my profile', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+  <div class="divs-user-profile my-pronostics text-center">
+    <% if @user == current_user %>
+      <h2>Tous mes paris</h2>
+    <% else %>
+       <h2>Tous ses paris</h2>
+    <% end %>
+
+    <% @user.bets.each do |bet| %>
+      <%= link_to game_path(bet.game) do %>
+        <p>
+          <%= bet.game.team1 %>
+          <%= bet.score1bet %>
+          -
+          <%= bet.score2bet %>
+          <%= bet.game.team2 %>
+
+
+          <% if bet.user == current_user %>
+            <%= link_to 'Change ton prono', edit_bet_path(bet), class: "btn btn-default" %> |
+            <%= link_to 'Supprime ton prono', bet_path(bet), method: :delete, class: "btn btn-default" %>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
 
 
 </div>

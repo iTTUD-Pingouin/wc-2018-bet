@@ -29,11 +29,15 @@ class GamePolicy < ApplicationPolicy
     true
   end
 
+  def nogroup?
+    true
+  end
+
 
   private
 
   def user_is_admin?
-    true
+    user.admin == true
   end
 
 

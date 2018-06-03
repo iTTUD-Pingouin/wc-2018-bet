@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :bets
+  has_many :bets, dependent: :destroy
   has_many :games, through: :bets
   belongs_to :group
 

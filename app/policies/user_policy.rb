@@ -6,11 +6,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    record == user
   end
 
   def destroy?
-    true
+    record == user
   end
 
 end
