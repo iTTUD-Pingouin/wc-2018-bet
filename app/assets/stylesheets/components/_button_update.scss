@@ -1,0 +1,14 @@
+.btn-to-update-prono-in-show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $yellow;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 222px;
+  p {
+    margin: 0;
+  }
+}

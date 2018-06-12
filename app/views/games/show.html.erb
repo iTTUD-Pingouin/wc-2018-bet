@@ -41,9 +41,11 @@
 
 
     <div class="ton-prono-on-show">
-      <% if current_user.bets != [] %>
-        <% pari = current_user.bets.select { |bet| bet.game_id == @game.id}  %>
+      <% pari = current_user.bets.select { |bet| bet.game_id == @game.id }  %>
+      <% if current_user.bets != [] && pari != [] %>
         <p>Ton prono : <%= pari.first.score1bet %> - <%= pari.first.score2bet %></p>
+      <% else %>
+        <p>Tu n'as pas encore donné ton prono</p>
       <% end %>
     </div>
   </div>
@@ -51,16 +53,31 @@
 
 
 <!--------------- DONNE TON PRONO --------------------->
+  <% if current_user.bets != [] && pari != []%>
+    <div class="btn-to-update-prono-in-show">
+      <p>Change ton pronostic</p>
+    </div>
+    <div class="update-prono-in-show not-show">
+      <p>bnjour
+        <br>
+        <br>
+        <br>
+        <br>
+      </p>
+    </div>
+  <% else %>
+    <%= simple_form_for [@game, @bet] do |f| %>
+      <%= f.input :score1bet, label: "Score #{@game.team1}" %>
+      <%= f.input :score2bet, label: "Score #{@game.team2}" %>
 
-<%= simple_form_for [@game, @bet] do |f| %>
-    <%= f.input :score1bet, label: "Score #{@game.team1}" %>
-    <%= f.input :score2bet, label: "Score #{@game.team2}" %>
-
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <%= f.button :button do %>
-      <%= link_to 'Retour', game_path(@game) %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= f.button :button do %>
+        <%= link_to 'Retour', game_path(@game) %>
+      <% end %>
     <% end %>
+
   <% end %>
+
 
 
 

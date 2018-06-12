@@ -9,3 +9,7 @@
 
 
 import "bootstrap";
+import { clickToUpdateProno } from './update_in_show.js';
+
+
+clickToUpdateProno();
