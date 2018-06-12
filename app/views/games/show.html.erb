@@ -54,17 +54,16 @@
 
 <!--------------- DONNE TON PRONO --------------------->
   <% if current_user.bets != [] && pari != []%>
-    <div class="btn-to-update-prono-in-show">
-      <p>Change ton pronostic</p>
+
+
+
+    <div class="new-bet">
+      <%= link_to 'Change ton prono', edit_bet_path(pari), class: 'btn btn-info' %>
     </div>
-    <div class="update-prono-in-show not-show">
-      <p>bnjour
-        <br>
-        <br>
-        <br>
-        <br>
-      </p>
-    </div>
+
+
+
+
   <% else %>
     <div class="new-bet">
       <%= simple_form_for [@game, @bet], html: { class: 'form-inline text-center' } do |f| %>

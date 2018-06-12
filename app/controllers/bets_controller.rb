@@ -29,7 +29,7 @@ class BetsController < ApplicationController
   def update
     @game = @bet.game
     if @bet.update(bet_params)
-      redirect_to user_path(@bet.user)
+      redirect_to game_path(@game)
     else
      render :edit
     end
