@@ -1,10 +1,23 @@
 
- <%= simple_form_for @bet do |f| %>
-    <%= f.input :score1bet, label: "Score #{@game.team1}" %>
-    <%= f.input :score2bet, label: "Score #{@game.team2}" %>
+ <%= simple_form_for @bet, html: {class: 'form-inline text-center to-bottom-30'} do |f| %>
+    <%= f.input :score1bet, label: "#{@game.team1}" %>
+    <%= f.input :score2bet, label: "#{@game.team2}" %>
 
     <%= f.button :submit, class: 'btn btn-primary' %>
     <%= f.button :button do %>
       <%= link_to 'Retour', game_path(@game) %>
     <% end %>
-  <% end %>
+<% end %>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

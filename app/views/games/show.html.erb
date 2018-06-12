@@ -43,7 +43,11 @@
     <div class="ton-prono-on-show">
       <% if current_user.bets != [] %>
         <% pari = current_user.bets.select { |bet| bet.game_id == @game.id}  %>
-        <p>Ton prono : <%= pari.first.score1bet %> - <%= pari.first.score2bet %></p>
+        <% if current_user.bets != [] && pari != [] %>
+            <p style="font-size: 32px; font-weight: bolder;">Ton prono : <%= pari.first.score1bet %> - <%= pari.first.score2bet %></p>
+        <% else %>
+          <p>Tu n'as pas encore donné ton prono</p>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -51,15 +55,18 @@
 
 
 <!--------------- DONNE TON PRONO --------------------->
-
-<%= simple_form_for [@game, @bet] do |f| %>
-    <%= f.input :score1bet, label: "Score #{@game.team1}" %>
-    <%= f.input :score2bet, label: "Score #{@game.team2}" %>
-
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <%= f.button :button do %>
-      <%= link_to 'Retour', game_path(@game) %>
-    <% end %>
+ <% if current_user.bets != [] && pari != [] %>
+    <div class="new-bet">
+      <%= link_to 'Change ton prono', edit_bet_path(pari), class: 'btn btn-info' %>
+    </div>
+  <% else %>
+    <div class="new-bet">
+      <%= simple_form_for [@game, @bet], html: { class: 'form-inline text-center' } do |f| %>
+        <%= f.input :score1bet, label: "#{@game.team1}"%>
+        <%= f.input :score2bet, label: "#{@game.team2}"%>
+        <%= f.button :submit, 'Valider', class: 'btn btn-primary', style:'margin-left: 23px; margin-right: 23px;' %>
+      <% end %>
+    </div>
   <% end %>
 
 
@@ -98,9 +105,7 @@
                     <% end %>
                   <% end %>
 
-                  <% if policy(bet).update? %>
-                    <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>
-                  <% end %>
+
                 </td>
                 <td><%= bet.score1bet %></td>
                 <td><%= bet.score2bet %></td>
@@ -151,9 +156,7 @@
                   <%= bet.user.email %>
                 <% end %>
               <% end %>
-              <% if policy(bet).update? %>
-                <%= link_to 'Change ton prono', edit_bet_path(bet), class: 'btn btn-info' %>
-              <% end %>
+
             </td>
             <td><%= bet.score1bet %></td>
             <td><%= bet.score2bet %></td>
