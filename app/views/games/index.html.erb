@@ -1,11 +1,25 @@
 
+
+
+
+
+<div class="container">
+  <div class="row">
+    <h1>Les 4 prochains matchs</h1>
+    <div class="colored-underline">
+    </div>
+  </div>
+</div>
+
+
 <% if params[:team].blank? && params[:commit].blank? || params[:commit] == 'Tous les matchs' %>
   <div class="container">
 
     <div class="row">
 
+
       <div class="allgames-h1">
-        <h1>All games</h1>
+        <h1>Tous les matchs</h1>
         <div class="colored-underline">
         </div>
         <div class="form-selector">
@@ -31,7 +45,7 @@
 
 
    <div class="container">
-<div class="row">
+     <div class="row">
 
       <!------- Card of all games --------------------------->
       <% @poules.each do |poule|%>
