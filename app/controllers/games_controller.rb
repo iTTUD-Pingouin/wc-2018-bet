@@ -8,6 +8,8 @@ class GamesController < ApplicationController
   end
 
   def show
+    @bet = Bet.new
+
   end
 
   def new

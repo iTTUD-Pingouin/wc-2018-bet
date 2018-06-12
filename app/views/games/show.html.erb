@@ -40,11 +40,27 @@
 
 
 
-
-    <%= link_to 'Donne ton prono', new_game_bet_path(@game), class: 'btn btn-warning btn-lg' %>
+    <div class="ton-prono-on-show">
+      <% if current_user.bets != [] %>
+        <% pari = current_user.bets.select { |bet| bet.game_id == @game.id}  %>
+        <p>Ton prono : <%= pari.first.score1bet %> - <%= pari.first.score2bet %></p>
+      <% end %>
+    </div>
   </div>
 
-<!--------------- INFORMATIONS DU MATCH ---------------->
+
+
+<!--------------- DONNE TON PRONO --------------------->
+
+<%= simple_form_for [@game, @bet] do |f| %>
+    <%= f.input :score1bet, label: "Score #{@game.team1}" %>
+    <%= f.input :score2bet, label: "Score #{@game.team2}" %>
+
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :button do %>
+      <%= link_to 'Retour', game_path(@game) %>
+    <% end %>
+  <% end %>
 
 
 

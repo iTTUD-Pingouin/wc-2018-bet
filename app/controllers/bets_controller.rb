@@ -2,11 +2,11 @@ class BetsController < ApplicationController
 
   before_action :set_bet, only: [:edit, :update, :destroy]
 
-  def new
-    @game = Game.find(params[:game_id])
-    @bet = Bet.new
-    authorize @bet
-  end
+  # def new
+  #   @game = Game.find(params[:game_id])
+  #   @bet = Bet.new
+  #   authorize @bet
+  # end
 
   def create
     @game = Game.find(params[:game_id])
@@ -17,8 +17,8 @@ class BetsController < ApplicationController
     if @bet.save
       redirect_to game_path(@game)
     else
+      redirect_to game_path(@game)
       @error = "T'as déjà parié sur ce match abruti"
-      render :new
     end
   end
 
