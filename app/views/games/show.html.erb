@@ -53,21 +53,26 @@
   </div>
 
 
-
 <!--------------- DONNE TON PRONO --------------------->
- <% if current_user.bets != [] && pari != [] %>
-    <div class="new-bet">
-      <%= link_to 'Change ton prono', edit_bet_path(pari), class: 'btn btn-info' %>
-    </div>
-  <% else %>
-    <div class="new-bet">
-      <%= simple_form_for [@game, @bet], html: { class: 'form-inline text-center' } do |f| %>
-        <%= f.input :score1bet, label: "#{@game.team1}"%>
-        <%= f.input :score2bet, label: "#{@game.team2}"%>
-        <%= f.button :submit, 'Valider', class: 'btn btn-primary', style:'margin-left: 23px; margin-right: 23px;' %>
-      <% end %>
-    </div>
-  <% end %>
+<% if (@game.hour>Time.now.hour ||  @game.date != Date.today.day) && @game.date>= Date.today.day %>
+   <% if current_user.bets != [] && pari != [] %>
+      <div class="new-bet">
+        <%= link_to 'Change ton prono', edit_bet_path(pari), class: 'btn btn-info' %>
+      </div>
+    <% else %>
+      <div class="new-bet">
+        <%= simple_form_for [@game, @bet], html: { class: 'form-inline text-center' } do |f| %>
+          <%= f.input :score1bet, label: "#{@game.team1}"%>
+          <%= f.input :score2bet, label: "#{@game.team2}"%>
+          <%= f.button :submit, 'Valider', class: 'btn btn-primary', style:'margin-left: 23px; margin-right: 23px;' %>
+        <% end %>
+      </div>
+    <% end %>
+<% else %>
+  <div class="new-bet">
+    <p>Paris clos pour ce match !</p>
+  </div>
+<% end %>
 
 
 

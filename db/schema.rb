@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_03_185405) do
+ActiveRecord::Schema.define(version: 2018_06_13_201032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2018_06_03_185405) do
     t.string "domflag"
     t.string "extflag"
     t.bigint "poule_id"
+    t.integer "hour"
+    t.integer "date"
     t.index ["poule_id"], name: "index_games_on_poule_id"
   end
 
