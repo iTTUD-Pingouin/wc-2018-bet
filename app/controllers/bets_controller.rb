@@ -1,3 +1,4 @@
+
 class BetsController < ApplicationController
 
   before_action :set_bet, only: [:edit, :update, :destroy]
@@ -10,16 +11,20 @@ class BetsController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    @bet = Bet.new(bet_params)
-    @bet.game = @game
-    @bet.user = current_user
-    authorize @bet
-    if @bet.save
-      redirect_to game_path(@game)
-    else
-      redirect_to game_path(@game)
-      @error = "T'as déjà parié sur ce match abruti"
-    end
+
+
+      @bet = Bet.new(bet_params)
+      @bet.game = @game
+      @bet.user = current_user
+      authorize @bet
+      if @bet.save
+        redirect_to game_path(@game)
+      else
+        redirect_to game_path(@game)
+        @error = "T'as déjà parié sur ce match abruti"
+      end
+
+
   end
 
   def edit
