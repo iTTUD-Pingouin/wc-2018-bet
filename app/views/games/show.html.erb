@@ -4,7 +4,7 @@
 
     <div class="game-and-group">
       <h1><%= @game.team1 %> - <%= @game.team2 %></h1>
-      <p>Groupe <%= @game.poule.name %> - <%= @game.date %> juin 2018 - <%= @game.hour %>H</p>
+      <p>Groupe <%= @game.poule.name %> - <%= @game.date %> juin 2018 - <%= @game.hour + 2%>H</p>
 
       <% if Game.exists?(@game.id - 1)%>
         <%= link_to game_path(@game.id-1) do %>
