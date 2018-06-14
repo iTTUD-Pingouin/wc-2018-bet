@@ -99,7 +99,7 @@
             <% if bet.user.group == current_user.group %>
               <tr>
                 <th scope="row">
-                  <%= cl_image_tag bet.user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %>
+                  <%= cl_image_tag bet.user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar' %>
                 </th>
                 <td>
                   <%= link_to user_path(bet.user) do %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_201032) do
+ActiveRecord::Schema.define(version: 2018_06_14_200203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_201032) do
     t.bigint "poule_id"
     t.integer "hour"
     t.integer "date"
+    t.boolean "end", default: false, null: false
     t.index ["poule_id"], name: "index_games_on_poule_id"
   end
 
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_201032) do
     t.boolean "admin", default: false
     t.bigint "group_id", default: 1
     t.string "photo"
+    t.integer "points", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

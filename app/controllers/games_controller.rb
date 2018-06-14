@@ -48,11 +48,76 @@ class GamesController < ApplicationController
 
   def my_group
     @games = Game.all
+    @users = User.all
     authorize @games
   end
 
   def global_ranking
     @games = Game.all
+
+    @games.each do |game|
+        # victoire de l'équipe à domicile -------------------
+      if game.score1 != nil && game.score2 != nil && game.score1 > game.score2 && game.end == true
+
+        game.bets.each do |bet|
+          if bet.score1bet > bet.score2bet && bet.score1bet == game.score1 && bet.score2bet == game.score2
+            bet.user.points += 3
+            bet.user.save!
+
+
+          elsif bet.score1bet > bet.score2bet && (bet.score1bet != game.score1 || bet.score2bet != game.score2)
+            bet.user.points += 2
+            bet.user.save!
+
+          else
+
+          end
+        end
+
+
+
+        # victoire de l'équipe à l'extérieur -------------------
+      elsif game.score1 != nil && game.score2 != nil && game.score1 < game.score2 && game.end == true
+
+        game.bets.each do |bet|
+          if bet.score1bet < bet.score2bet && bet.score1bet == game.score1 && bet.score2bet == game.score2
+            bet.user.points += 3
+            bet.user.save!
+
+          elsif bet.score1bet < bet.score2bet && (bet.score1bet != game.score1 || bet.score2bet != game.score2)
+            bet.user.points += 2
+            bet.user.save!
+          else
+
+          end
+        end
+
+
+        # match nuls -------------------
+      elsif game.score1 != nil && game.score2 != nil && game.score1 == game.score2 && game.end == true
+
+        game.bets.each do |bet|
+          if bet.score1bet == bet.score2bet && bet.score1bet == game.score1 && bet.score2bet == game.score2
+            bet.user.points += 3
+            bet.user.save!
+
+          elsif bet.score1bet == bet.score2bet && (bet.score1bet != game.score1 || bet.score2bet != game.score2)
+            bet.user.points += 2
+            bet.user.save!
+
+          else
+
+          end
+        end
+      end
+
+    game.end = false
+    game.save!
+    end
+
+    @users = User.all
+
+
     authorize @games
   end
 

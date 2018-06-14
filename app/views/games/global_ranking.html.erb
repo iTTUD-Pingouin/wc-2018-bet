@@ -1,25 +1,27 @@
-<div class="container">
-  <h1> Classement général mis en ligne après le premier match</h1>
+<div class="container text-center">
+  <h1>Classement général</h1>
+  <% users = @users.sort_by {|user| user.points}.reverse %>
+  <% position = 1 %>
+  <% users.each do |user| %>
+    <% if user == current_user %>
+      <p style="color: green">
+        <% if user.pseudo && user.pseudo != "" %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.pseudo %> : <%= user.points %> points
+        <% else %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.email %> : <%= user.points %> points
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <% if user.pseudo && user.pseudo != "" %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.pseudo %> : <%= user.points %> points
+        <% else %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.email %> : <%= user.points %> points
+        <% end %>
+      </p>
+    <% end %>
+    <% position += 1 %>
+  <% end %>
 
 
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
