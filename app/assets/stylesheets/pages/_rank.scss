@@ -1,0 +1,7 @@
+.rank-style a {
+  text-decoration: none;
+  &:hover {
+    font-size: 1.1em;
+    transition: all ease .3s;
+  }
+}
