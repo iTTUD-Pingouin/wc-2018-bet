@@ -16,3 +16,39 @@
     top: 5px;
     left: 10px;
 }
+
+
+.link-details{
+  margin-top: -5px;
+}
+
+.link-details a {
+  text-decoration: none;
+  padding: 10px;
+  background-color: $blue;
+  color: white;
+  &:hover {
+    background-color: white;
+    color:  $blue;
+    transition: all ease .3;
+  }
+}
+
+
+
+
+
+.match-card2 {
+  margin-bottom: 30px;
+  padding: 10px;
+  height: 200px;
+  position: relative;
+  background-image: linear-gradient(-225deg, rgba(0,50,100,0.5) 0%, rgba(0,36,50,0.5) 50%),
+                    asset-url('image-game-show-banner.jpg');
+  background-size: cover;
+  box-shadow: 1px 1px 2px black;
+  a {
+    color: white;
+  }
+}
+

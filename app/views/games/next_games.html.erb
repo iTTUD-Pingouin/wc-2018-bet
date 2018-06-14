@@ -14,7 +14,7 @@
       <!--------------- DONNE TON PRONO --------------------->
 
 
-        <div  class="match-card">
+        <div  class="match-card2">
           <div class="central-game-info">
             <div class="home-team-lg text-center">
               <p><%="#{game.team1}"%></p>
@@ -68,6 +68,11 @@
              <p><%= game.date %> juin - <%= game.hour %>H</p>
           </div>
 
+
+
+        <div class="link-details">
+          <%= link_to "Le match en détails", game_path(game)  %>
+        </div>
         </div>
 
 
