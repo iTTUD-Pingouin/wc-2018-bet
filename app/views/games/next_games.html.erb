@@ -1,0 +1,81 @@
+<% nextgames = @games.select do |game| %>
+  <% (game.date == Date.today.day) ||  (game.date == Date.today.day + 1) %>
+<% end %>
+
+<div class="container text-center">
+  <div class="next_four_games">
+    <% nextgames.each do |game| %>
+
+      <% if current_user.bets != [] %>
+        <% pari = current_user.bets.select { |bet| bet.game_id == game.id}  %>
+      <% end %>
+
+
+      <!--------------- DONNE TON PRONO --------------------->
+
+
+
+
+      <div  class="match-card">
+        <div class="central-game-info">
+          <div class="home-team-lg text-center">
+            <p><%="#{game.team1}"%></p>
+            <%= image_tag(game.domflag) %>
+          </div>
+
+            <% if (game.hour>Time.now.hour ||  game.date != Date.today.day) && game.date>= Date.today.day %>
+
+               <% if current_user.bets != [] && pari != [] %>
+                    <div class="your-bet">
+                      <p style="font-size: 32px; font-weight: bolder; margin-bottom: 10px;">Ton prono : <%= pari.first.score1bet %> - <%= pari.first.score2bet %></p>
+                      <%= link_to 'Change ton prono', edit_bet_path(pari), class: 'btn btn-info' %>
+                    </div>
+
+                <% else %>
+
+                    <%= simple_form_for [game, @bet], html: { class: 'form-inline text-center' } do |f| %>
+                      <div class="new-bet2">
+                        <%= f.input :score1bet, label: ""%>
+                        <%= f.input :score2bet, label: ""%>
+                        <%= f.button :submit, 'Valider', class: 'btn btn-info', style:'margin-left: 23px; margin-right: 23px;' %>
+
+                      </div>
+
+                    <% end %>
+
+                <% end %>
+
+            <% else %>
+
+                <p>Paris clos pour ce match !</p>
+
+            <% end %>
+
+          <div class="ext-team-lg text-center">
+            <p><%= "#{game.team2}" %></p>
+            <%= image_tag(game.extflag) %>
+          </div>
+        </div>
+
+        <% if current_user.admin == true %>
+          <div class="admin-games-links">
+            <p>
+              <%= link_to 'edit', edit_game_path(game) %> -
+              <%= link_to 'delete', game_path(game), method: :delete, data: {confirm: "Are you sure?"} %>
+            </p>
+          </div>
+        <% end %>
+
+        <div class="your-index-bet2">
+           <p><%= game.date %> juin - <%= game.hour %>H</p>
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+

@@ -61,6 +61,12 @@ class GamesController < ApplicationController
     authorize @games
   end
 
+  def next_games
+    @games = Game.all
+    @bet = Bet.new
+    authorize @games
+  end
+
   private
 
   def game_params

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do                       # collection => no restaurant id in URL
       get 'global', to: "games#global_ranking"  # RestaurantsController#top
       get 'grouperank', to: "games#my_group"  # RestaurantsController#top
+      get 'next', to: "games#next_games"  # RestaurantsController#top
     end
     resources :bets, :only => [:new, :create]
   end

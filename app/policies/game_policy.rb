@@ -33,6 +33,10 @@ class GamePolicy < ApplicationPolicy
     true
   end
 
+  def next_games?
+    true
+  end
+
 
   private
 

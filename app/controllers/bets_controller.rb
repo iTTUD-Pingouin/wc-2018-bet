@@ -3,6 +3,8 @@ class BetsController < ApplicationController
 
   before_action :set_bet, only: [:edit, :update, :destroy]
 
+  include ActionView::Helpers::UrlHelper
+
   # def new
   #   @game = Game.find(params[:game_id])
   #   @bet = Bet.new
@@ -18,7 +20,7 @@ class BetsController < ApplicationController
       @bet.user = current_user
       authorize @bet
       if @bet.save
-        redirect_to game_path(@game)
+        redirect_back(fallback_location: root_path)
       else
         redirect_to game_path(@game)
         @error = "T'as déjà parié sur ce match abruti"
