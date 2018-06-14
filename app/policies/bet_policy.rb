@@ -13,7 +13,7 @@ class BetPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user && (record.game.hour>Time.now.hour ||  record.game.date != Date.today.day) && record.game.date>= Date.today.day
+    record.user == user && (record.game.hour>Time.now.hour ||  record.game.date != Date.today.day) && record.game.date >= Date.today.day
   end
 
   def destroy?
