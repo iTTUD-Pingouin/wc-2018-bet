@@ -25,10 +25,10 @@
       </div>
       <% if @game.score1 %>
         <div class="score-dom-show">
-          <h1>@game.score1</h1>
+          <h1><%= @game.score1 %></h1>
         </div>
         <div class="score-dom-show">
-          <h1>@game.score2</h1>
+          <h1><%= @game.score2 %></h1>
         </div>
       <% else %>
         <h3 class="not-played-show">Match pas encore joué</h3>
