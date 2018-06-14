@@ -1,26 +1,27 @@
+<div class="container text-center">
+  <h1>Classement du groupe <%= current_user.group.name %></h1>
+  <% users = @users.sort_by {|user| user.points}.reverse %>
+  <% usersgroup = users.select {|user| user.group == current_user.group}%>
+  <% position = 1 %>
+  <% usersgroup.each do |user| %>
+    <% if user == current_user %>
+      <p style="color: green">
+        <% if user.pseudo && user.pseudo != "" %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.pseudo %> : <%= user.points %> points
+        <% else %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.email %> : <%= user.points %> points
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <% if user.pseudo && user.pseudo != "" %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.pseudo %> : <%= user.points %> points
+        <% else %>
+          <%= position %> - <%= cl_image_tag user.photo, height: 30, width: 30, crop: :fill, :gravity=>"face", :radius=>"max", default_image: 'avatar.jpg' %> <%= user.email %> : <%= user.points %> points
+        <% end %>
+      </p>
+    <% end %>
+    <% position += 1 %>
+  <% end %>
 
-<div class="container">
-  <h1> Classement mis en ligne après le premier match </h1>
-
-  <p>Tu retrouveras également bientôt ici l'ensemble des paris de ton groupe pour tous les matchs ainsi que le classement par rapport aux membres de ce dernier! </p>
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
